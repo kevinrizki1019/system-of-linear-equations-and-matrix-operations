@@ -1,27 +1,29 @@
-
 package matriksDasar;
+
 import java.util.Scanner;
+
 public class MakeMatriks {
   Scanner input = new Scanner(System.in);
   private int idxBaris,idxKolom; // Akses idxBaris hanya bisa pada class MakeMatriks sehingga bila ingin mengubah besaran harus menggunakan fungsi SetIndeks dan ingin mengambil bisa menggunakan fungsi GetIndeks
   private double determinan=1;
-   public void SetIndeks(int idxBrs, int idxKol)
+   
+  public void SetIndeks(int idxBrs, int idxKol)
    {
       idxBaris=idxBrs;
       idxKolom=idxKol;
    }
   
-   public int GetIndeksBaris()
+  public int GetIndeksBaris()
    {
        return idxBaris;
    }
    
-   public int GetIndeksKolom()
+  public int GetIndeksKolom()
    {
        return idxKolom;
    }
    
-   public void BacaMatriks(double[][] matriks1) 
+  public void BacaMatriks(double[][] matriks1) 
    {
        for(int i=0; i<idxBaris; i++){
            for(int j=0; j<idxKolom; j++){
@@ -30,16 +32,18 @@ public class MakeMatriks {
        }
        
    } 
-   public void TulisMatriks(double[][] matriks1) 
+  
+  public void TulisMatriks(double[][] matriks1) 
    {
        for(int i=0; i<idxBaris; i++){
            for(int j=0; j<idxKolom; j++){
-               System.out.print(" "+matriks1[i][j]+" ");
+               System.out.format("%.2f ",matriks1[i][j]);
            }
            System.out.println();
        }
    }
-    public void GaussElimination(double[][] matriks1)
+  
+  public void GaussElimination(double[][] matriks1)
     {
         double c=0;
         for(int j=0; j<idxBaris; j++){             //akses Eliminasi
@@ -67,7 +71,8 @@ public class MakeMatriks {
             }
         }
     }
-    public double GetDeterminanOBE(double[][] matriks1)
+
+  public double GetDeterminanOBE(double[][] matriks1)
     //I.S Matriks sudah mengalami Eliminasi Gauss
     {   
         for (int i=0; i<idxBaris; i++){
@@ -76,7 +81,8 @@ public class MakeMatriks {
         return determinan;
         
     }
-    public void GaussJordanElimination(double[][] matriks1)
+  
+  public void GaussJordanElimination(double[][] matriks1)
     // I.S Matriks tidak boleh mengalami OBE SEBELUMNYA!!
     {
         double c;
@@ -105,7 +111,8 @@ public class MakeMatriks {
             }
         }
     }
-   public void invers (double[][] matriks1)
+
+  public void invers (double[][] matriks1)
    //I.S Masukan Matriks belum mengalami OBE (ELIMINASI GAUSS JORDAN)
    {
        double[][] matriks=new double [idxBaris] [2*(idxBaris)];
@@ -141,10 +148,22 @@ public class MakeMatriks {
            matriks[Brs2][j]=temp;
        }
    }
-        
-        
-        
-    
    
-    
+   public double[][] KaliMatriks(double [][] matriks1, double [][] matriks2, int idxBrs1, int idxKol2)
+   {
+       double [][] matriks;
+       matriks = new double [idxBrs1][idxKol2];
+       for (int i=0; i<idxBrs1; i++){
+           for (int j=0; j<idxKol2; j++){
+               matriks[i][j]=0;
+               for (int k=0; k<idxBrs1; k++){
+                   matriks[i][j]+=matriks1[i][k]*matriks2[k][j];
+               }
+           }
+       }
+       return matriks;
+   }
+   
+        
+     
 }
