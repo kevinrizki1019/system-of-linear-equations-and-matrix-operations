@@ -46,20 +46,26 @@ public class MakeMatriks {
   public void GaussElimination(double[][] matriks1)
     {
         double c=0;
-        for(int j=0; j<idxBaris; j++){             //akses Eliminasi
+        for(int j=0; j<idxKolom-1; j++){             //akses Eliminasi
             for(int i=0; i<idxBaris; i++){         //Per Kolom yang mana j menyatakan kolom dan i menyatakan baris
                 if(i>j){
-                    for (int k=1; k<=idxBaris-i;k++){
-                        if(matriks1[j][j]!=0){
-                            k=idxBaris;
+                    int idx=0;
+                    int l=1;
+                    if (matriks1[j][j]==0){
+                        for (idx=0; j+idx<idxKolom-1 && l!=idxBaris+1; idx++){    
+                            for (l=1; l<idxBaris-i;l++){
+                                if(matriks1[j][j+idx]!=0){
+                                    l=idxBaris+1;
+                                }
+                                else{
+                                    tukar(matriks1,j,j+l);
+                                    determinan*=-1;
+                                }
+                            }
                         }
-                        else{
-                            tukar(matriks1,j,j+k);
-                            determinan*=-1;
-                        }
-                    }   
-                    if (matriks1[j][j]!=0){
-                        c=matriks1[i][j]/ matriks1[j][j];
+                    }
+                    if (matriks1[j][j+idx]!=0){
+                        c=matriks1[i][j]/ matriks1[j][j+idx];
                         for(int k=0; k<idxKolom; k++){  //pengurangan matriks per baris
                             matriks1[i][k]=matriks1[i][k]-c*matriks1[j][k];
                             if(matriks1[i][k]==-0){
@@ -86,30 +92,32 @@ public class MakeMatriks {
     // I.S Matriks tidak boleh mengalami OBE SEBELUMNYA!!
     {
         double c;
-        for(int i=0; i<idxBaris; i++){
-            for (int j=0; j<idxBaris; j++){
-                if (j>i){
-                    if(matriks1[j][j]!=0){    
-                        c=matriks1[i][j]/ matriks1[j][j];
-                        for(int k=0; k<idxKolom; k++){  //pengurangan matriks per baris
-                                matriks1[i][k]=matriks1[i][k]-c*matriks1[j][k];
-                                if(matriks1[i][k]==-0){
-                                    matriks1[i][k]=0;
-                                }
+        boolean a=true;
+        for(int i=idxBaris-1; i>=0; i--){
+            a=true;
+            for (int j=0; j<idxKolom-1 && a==true; j++){
+                if(matriks1[i][j]!=0){    
+                    for (int l=1; i-l>=0 ;l++){
+                        c=matriks1[i-l][j]/matriks1[i][j];
+                        for (int k=0; k<idxKolom ; k++ ){
+                            matriks1[i-l][k]-=c*matriks1[i][k];
+                            if (matriks1[i][k]==-0.00){
+                                matriks1[i][k]=0.00;
+                            }
                         }
                     }
+                    double pembagi=matriks1[i][j];
+                    for (int k=0; k<idxKolom ; k++ ){
+                        matriks1[i][k]=matriks1[i][k] / pembagi;
+                        if (matriks1[i][k]==-0.00){
+                            matriks1[i][k]=0.00;
+                        }
+                    }
+                    a=false;
                 }
             }
         }
-        for(int i=0; i<idxBaris; i++){
-            if(matriks1[i][i]!=0){
-            for (int j=idxBaris; j<idxKolom; j++){
-                matriks1[i][j]/=matriks1[i][i];
                 
-            }
-            matriks1[i][i]/=matriks1[i][i];
-            }
-        }
     }
 
   public void invers (double[][] matriks1)
