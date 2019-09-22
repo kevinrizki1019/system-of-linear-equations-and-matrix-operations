@@ -48,7 +48,7 @@ public class matriks {
         return this.idxKolom = newidxKolom;
     }
     
-    public setidx(int i, int j)
+    public void setidx(int i, int j)
     {
         this.idxBaris = i;
         this.idxKolom = j;
@@ -166,6 +166,7 @@ public class matriks {
   public double GetDeterminanOBE(double[][] matriks1)
     //I.S Matriks sudah mengalami Eliminasi Gauss
     {   
+        double determinan = 1;
         for (int i=0; i<this.idxBaris; i++){
             determinan = determinan* matriks1[i][i];
         }
@@ -178,23 +179,32 @@ public class matriks {
     {
         double c;
         boolean a=true;
-        for(int i=this.idxBaris-1; i>=0; i--){
+        for(int i=this.idxBaris-1; i>=0; i--)
+        {
             a=true;
-            for (int j=0; j<this.idxKolom-1 && a==true; j++){
-                if(matriks1[i][j]!=0){    
-                    for (int l=1; i-l>=0 ;l++){
+            for (int j=0; j<this.idxKolom-1 && a==true; j++)
+            {
+                if(matriks1[i][j]!=0)
+                {    
+                    for (int l=1; i-l>=0 ;l++)
+                    {
                         c=matriks1[i-l][j]/matriks1[i][j];
-                        for (int k=0; k<this.idxKolom ; k++ ){
+                        for (int k=0; k<this.idxKolom ; k++ )
+                        {
                             matriks1[i-l][k]-=c*matriks1[i][k];
-                            if (matriks1[i][k]==-0.00){
+
+                            if (matriks1[i][k]==-0.00)
+                            {
                                 matriks1[i][k]=0.00;
                             }
                         }
                     }
                     double pembagi=matriks1[i][j];
-                    for (int k=0; k<this.idxKolom ; k++ ){
+                    for (int k=0; k<this.idxKolom ; k++ )
+                    {
                         matriks1[i][k]=matriks1[i][k] / pembagi;
-                        if (matriks1[i][k]==-0.00){
+                        if (matriks1[i][k]==-0.00)
+                        {
                             matriks1[i][k]=0.00;
                         }
                     }
@@ -202,6 +212,7 @@ public class matriks {
                 }
             }
         }
+    }
         public void BacaMatriks() 
         {
             for(int i=0; i<this.idxBaris; i++){
