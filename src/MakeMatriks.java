@@ -241,5 +241,123 @@ public class MakeMatriks {
         }
         this.TulisMatriks();
     }
+  public boolean IsHaveManySolution (double [][] matriks) 
+   // Matriks sudah mengalami Eliminasi Gauss Jordan
+   {
+       int count=0;
+       for (int i=0; i<idxBaris; i++){
+           count=0;
+           for (int j=0; j<idxKolom-1; j++){
+               if(matriks[i][j]!=0){
+                   count++;
+               }
+            }
+           if (count>0){
+               return true;
+           }
+       }
+       return false;
+   }
+   
+   public boolean IsFreeVariabel (double[][] matriks, int idx)
+   //Untuk Mengecek Apakah variabel idx adalah free variabel dan matriks dalam keadaan sudah mengalami Eliminasi Gauss Jordan
+   {    
+       for (int i=idxBaris-1; i>=0; i--){
+           for (int j=0; j<idxKolom-1; j++){
+               if(matriks[i][j]==1){
+                   if(j==idx){
+                       return false;
+                   }
+                   j=idxKolom;
+               }
+           }
+       }
+       return true;
+       
+   }
+   
+   public void TulisSPLGaussJordan (double [][] matriks)
+   //I.S Matriks belum mengalami eliminasi Gauss
+   //Menuliskan hasil SPL dengan menggunakan eliminasi Gauss
+   {
+       if (!IsHaveSolution(matriks)){
+           System.out.println("Matriks Tidak Memiliki Solusi");
+       }
+       else if (!IsHaveManySolution(matriks)){
+           for (int i=0;i<idxBaris; i++){
+               if(i==idxBaris-1){
+                   System.out.format("dan x%d=%.2f.",i+1,matriks[i][idxKolom-1]);
+               }
+               else{
+                   System.out.format("x%d=%.2f,",i+1,matriks[i][idxKolom-1]);
+               }
+           }
+       }
+       else {
+           StringBuffer variabel= new StringBuffer();
+           char a;
+           String temp="";
+           for (int j=0; j<idxKolom-1; j++){
+                temp+="a";
+           }
+           variabel.append(temp);
+           for (int j=0; j<idxKolom-1; j++){
+               if (IsFreeVariabel(matriks,j)){
+                   System.out.format("Variabel x%d adalah free variabel beri masukannya: \n",j+1);
+                   a=input.next().charAt(0);
+                   variabel.setCharAt(j,a);
+               }
+           }
+           int b=0;
+           for (int k=0; k<idxKolom-1; k++){
+               if (IsFreeVariabel(matriks,k)){
+                    if(k!=idxKolom-2){    
+                        System.out.format("x%d=%c,",k+1,variabel.charAt(k));
+                    }
+                    else{
+                        System.out.format("dan x%d=%c.",k+1,variabel.charAt(k));
+                    }
+               }
+               else{ 
+                   for (int i=0+b; i<idxBaris; i++){   
+                            for (int j=0; j<idxKolom-1; j++){
+                                if (matriks[i][j]==1){
+                                    if(k!=idxKolom-2){    
+                                        System.out.format("x%d=",k+1);
+                                    }
+                                    else{
+                                        System.out.format("dan x%d=",k+1);
+                                    }
+                                    for (int l=j+1; l<idxKolom-1; l++){
+                                        if(matriks[i][l]!=0){    
+                                            if (l!=idxKolom-2){
+                                                System.out.format("%.2f%c+",matriks[i][l]*-1,variabel.charAt(l));
+                                            }
+                                            else{
+                                                if(matriks[i][l+1]!=0){
+                                                    System.out.format("%.2f%c+",matriks[i][l]*-1,variabel.charAt(l));
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if(matriks[i][idxKolom-1]!=0){
+                                        if(k!=idxKolom-2){
+                                            System.out.format("%.2f,",matriks[i][idxKolom-1]);
+                                        }
+                                        else{
+                                            System.out.format("%.2f.",matriks[i][idxKolom-1]);
+                                        }
+                                    }
+                                    j=idxKolom;  
+                                    i=idxBaris;
+                                    b++;
+                                }
+                            }
+                        }
+                    }
+                
+                }
+        }
+    }
      
 }
