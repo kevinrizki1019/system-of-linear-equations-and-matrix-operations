@@ -50,7 +50,7 @@ public class matriks {
         return this.idxKolom = newidxKolom;
     }
     
-    public void setidx(int i, int j)
+   public void setidx(int i, int j)
     {
         this.idxBaris = i;
         this.idxKolom = j;
