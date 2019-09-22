@@ -8,12 +8,12 @@ public class matriks {
      * Properties
      */
     public double[][] Mat;
-    public int idxBaris = 0;
+    private int idxBaris = 0;
 
     /**
      * banyaknya/ukuran kolom yg terdefinisi
      */
-    public int idxKolom = 0;
+    private int idxKolom = 0;
 
     /**
      * Konstruktor
