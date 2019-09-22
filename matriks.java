@@ -18,6 +18,8 @@ public class matriks {
     /**
      * Konstruktor
      */
+    private double determinan=1;
+    
     public matriks (int i, int j)
     {
         this.Mat = new double [i][j]; 
