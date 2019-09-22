@@ -507,5 +507,26 @@ public class MakeMatriks {
              }
         
     }
+  public void TulisSPLMatriksBalikan (double [][] matriksInvers, double [][] onlyAugmented, int idxBarisInvers, int idxKolomAugmented )
+    {
+        double[][] matriks= new double[idxBarisInvers][idxKolomAugmented];
+        matriks=KaliMatriks(matriksInvers,onlyAugmented,idxBarisInvers,idxKolomAugmented);
+        for (int i=0; i<idxBarisInvers; i++){
+            if(i!=idxBarisInvers-1){
+                System.out.format("x%d=%.2f,",i+1,matriks[i][idxKolomAugmented]);
+            }
+            else{
+                System.out.format("dan x%d=%.2f.",i+1,matriks[i][idxKolomAugmented]);
+            }
+        }
+    } 
+    
+    public double [][] OnlyAugmented (double[][] matriks) {
+        double [][] matriks1= new double[idxBaris][1];
+        for (int i=0; i<idxBaris; i++){
+            matriks1[i][1]=matriks[i][idxKolom-1];
+        }
+        return matriks1;
+    }
      
 }
