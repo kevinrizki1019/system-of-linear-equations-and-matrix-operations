@@ -359,5 +359,153 @@ public class MakeMatriks {
                 }
         }
     }
+    public void TulisGauss(double [][] matriks)
+    //I.S Matriks sudah mengalami eliminasi Gauss
+    {
+           StringBuffer variabel= new StringBuffer();
+           char a;
+           String temp="";
+           for (int j=0; j<idxKolom-1; j++){
+                temp+="a";
+           }
+           variabel.append(temp);
+           for (int j=0; j<idxKolom-1; j++){
+                System.out.format("Berikan Pemisalan variabel x%d: \n",j+1);
+                a=input.next().charAt(0);
+                variabel.setCharAt(j,a);
+           }
+           int b=0;
+           for (int k=0; k<idxKolom-1; k++){
+               if (IsFreeVariabel(matriks,k)){
+                    if(k!=idxKolom-2){    
+                        System.out.format("x%d=%c,",k+1,variabel.charAt(k));
+                    }
+                    else{
+                        System.out.format("dan x%d=%c.",k+1,variabel.charAt(k));
+                    }
+               }
+               else{ 
+                   for (int i=0+b; i<idxBaris; i++){   
+                            for (int j=0; j<idxKolom-1; j++){
+                                if (matriks[i][j]==1){
+                                    if(k!=idxKolom-2){    
+                                        System.out.format("x%d=",k+1);
+                                    }
+                                    else{
+                                        System.out.format("dan x%d=",k+1);
+                                    }
+                                    for (int l=j+1; l<idxKolom-1; l++){
+                                        if(matriks[i][l]!=0){    
+                                            if (l!=idxKolom-2){
+                                                System.out.format("%.2f%c+",matriks[i][l]*-1,variabel.charAt(l));
+                                            }
+                                            else{
+                                                if(matriks[i][l+1]!=0){
+                                                    System.out.format("%.2f%c+",matriks[i][l]*-1,variabel.charAt(l));
+                                                }
+                                                else{
+                                                    if(k!=idxKolom-2){
+                                                        System.out.format("%.2f%c,",matriks[i][l]*-1,variabel.charAt(l));
+                                                    }
+                                                    else{
+                                                        System.out.format("%.2f%c.",matriks[i][l]*-1,variabel.charAt(l));
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if(matriks[i][idxKolom-1]!=0){
+                                        if(k!=idxKolom-2){
+                                            System.out.format("%.2f,",matriks[i][idxKolom-1]);
+                                        }
+                                        else{
+                                            System.out.format("%.2f.",matriks[i][idxKolom-1]);
+                                        }
+                                    }
+                                    j=idxKolom;  
+                                    i=idxBaris;
+                                    b++;
+                                }
+                            }
+                        }
+                    }
+                
+                }
+           System.out.format("\n setelah dieliminasi maka didapatkan hasil: \n");
+           GaussJordanElimination(matriks);
+           if (!IsHaveSolution(matriks)){
+                System.out.println("Matriks Tidak Memiliki Solusi");
+            }
+            else if (!IsHaveManySolution(matriks)){
+                for (int i=0;i<idxBaris; i++){
+                    if(i==idxBaris-1){
+                        System.out.format("dan x%d=%.2f.",i+1,matriks[i][idxKolom-1]);
+                    }
+                    else{
+                        System.out.format("x%d=%.2f,",i+1,matriks[i][idxKolom-1]);
+                    }
+                }
+            }
+            else {
+                b=0;
+                for (int k=0; k<idxKolom-1; k++){
+                    if (IsFreeVariabel(matriks,k)){
+                         if(k!=idxKolom-2){    
+                             System.out.format("x%d=%c,",k+1,variabel.charAt(k));
+                         }
+                         else{
+                             System.out.format("dan x%d=%c.",k+1,variabel.charAt(k));
+                         }
+                    }
+                    else{ 
+                        for (int i=0+b; i<idxBaris; i++){   
+                                 for (int j=0; j<idxKolom-1; j++){
+                                     if (matriks[i][j]==1){
+                                         if(k!=idxKolom-2){    
+                                             System.out.format("x%d=",k+1);
+                                         }
+                                         else{
+                                             System.out.format("dan x%d=",k+1);
+                                         }
+                                         for (int l=j+1; l<idxKolom-1; l++){
+                                             if(matriks[i][l]!=0){    
+                                                 if (l!=idxKolom-2){
+                                                     System.out.format("%.2f%c+",matriks[i][l]*-1,variabel.charAt(l));
+                                                 }
+                                                 else{
+                                                     if(matriks[i][l+1]!=0){
+                                                         System.out.format("%.2f%c+",matriks[i][l]*-1,variabel.charAt(l));
+                                                     }
+                                                     else{
+                                                         if(k!=idxKolom-2){
+                                                             System.out.format("%.2f%c,",matriks[i][l]*-1,variabel.charAt(l));
+                                                         }
+                                                         else{
+                                                             System.out.format("%.2f%c.",matriks[i][l]*-1,variabel.charAt(l));
+                                                         }
+                                                     }
+                                                 }
+                                             }
+                                         }
+                                         if(matriks[i][idxKolom-1]!=0){
+                                             if(k!=idxKolom-2){
+                                                 System.out.format("%.2f,",matriks[i][idxKolom-1]);
+                                             }
+                                             else{
+                                                 System.out.format("%.2f.",matriks[i][idxKolom-1]);
+                                             }
+                                         }
+                                         j=idxKolom;  
+                                         i=idxBaris;
+                                         b++;
+                                     }
+                                 }
+                             }
+                         }
+
+                     }
+             }
+        
+    }
      
 }
