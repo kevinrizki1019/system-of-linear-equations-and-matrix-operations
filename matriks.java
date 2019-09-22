@@ -20,11 +20,14 @@ public class matriks {
      */
     public matriks (int i, int j)
     {
-        double [][] this.Mat = new double [i][j]; 
+        this.Mat = new double [i][j]; 
         this.idxBaris = i;
         this.idxKolom = j;
     }
 
+    /**
+     * Selektor
+     */
     public double getElement(int i, int j) {
         return this.Mat[i][j];
     }
@@ -44,7 +47,12 @@ public class matriks {
     public int setidxKolom(int newidxKolom) {
         return this.idxKolom = newidxKolom;
     }
-
+    
+    public setidx(int i, int j)
+    {
+        this.idxBaris = i;
+        this.idxKolom = j;
+    }
     /**
      * Determinan Cofactor
      */
@@ -58,9 +66,6 @@ public class matriks {
                 if (row != p && col != q) {
                     temp[i][j++] = this.Mat[row][col];
 
-                    // Row is filled, so increase
-                    // row index and reset col
-                    // index
                     if (j == n - 1) {
                         j = 0;
                         i++;
@@ -271,7 +276,7 @@ public class matriks {
             int N = input.nextInt();
             double x,y;
     
-            this.SetIndeks(N, N+1);
+            this.setidx(N, N+1);
             for (int i=0; i<N; i++) {
                 x = input.nextDouble();
                 y = input.nextDouble();
