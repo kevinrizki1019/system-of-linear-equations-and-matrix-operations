@@ -723,6 +723,85 @@ public class matriks {
          }
          return matriks1;
      }
+
+     public void getSPLCrammer()
+     {
+         matriks temp = new matriks (this.getidxBaris(), this.getidxKolom() - 1);
+         if (temp.getidxBaris() == temp.getidxKolom())
+         {
+             for (int i = 0; i < temp.getidxBaris(); i++)
+             {
+                 for (int j = 0; j < temp.getidxKolom(); j++)
+                 {
+                     temp.Mat[i][j] = this.getElement(i, j);
+                 }
+             }
+             double [] D = new double [temp.getidxKolom()];
+             double [] solution = new double [temp.getidxKolom()];
+             double D_awal;
+             D_awal = determinantOfMatrix(temp.Mat, temp.getidxKolom());
+             if ( D_awal != 0)
+             {
+                 for(int j = 0; j < temp.getidxKolom(); j++)
+                 {
+                     for(int i = 0; i < temp.getidxBaris(); i++)
+                     {
+                         temp.Mat[i][j] = this.getElement(i, temp.getidxKolom());
+                     }
+                     D[j] = determinantOfMatrix(temp.Mat, temp.getidxKolom());
+
+                     solution[j] = D[j] / D_awal; 
+
+
+                     // manual exchanging. Karena
+                     for (int k = 0; k < temp.getidxBaris(); k++)
+                     {
+                         for (int l = 0; l < temp.getidxBaris(); l++)
+                         {
+                             temp.Mat[k][l] = this.getElement(k, l);
+                         }
+                     }
+                 }
+                 
+             }
+             for (int k = 0; k < temp.getidxKolom(); k ++ )
+             {
+                 System.out.println(solution[k]);
+             }
+         }
+         
+     }
+     public void KaliMatriks(matriks matriks2) // tanpa augmented
+        {
+            if (this.idxKolom != matriks2.idxBaris)
+                System.out.println("Kedua Matriks tidak dapat dikalikan.");
+            else
+            {
+                double sum = 0;
+                int i,j,k,l;
+                i = this.idxBaris;
+                j = this.idxKolom;
+
+                k = matriks2.idxBaris;
+                l = matriks2.idxKolom;
+                int a,b,c;
+                for ( a = 0; a < i; a++)
+                {
+                    for ( b = 0; b < l; b++)
+                    {
+                        for (c = 0; c < k; c++ )
+                        {
+                            sum = sum + this.getElement(a, c) * matriks2.getElement(c, b);
+                        }
+                    }   
+
+                    this.Mat[a][b] = sum;
+                    sum = 0;
+                    
+                }
+
+            }
+        }
     
     /* End */
 }
