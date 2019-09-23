@@ -6,8 +6,8 @@ public class MainMatriks {
         Scanner input = new Scanner(System.in);
         
         n = input.nextInt();
-
-        matriks M = new matriks(n,n);
+        m = input.nextInt();
+        matriks M = new matriks(n,m);
         M.BacaMatriks();
 
         double[][] c = new double[n][n];
@@ -19,8 +19,7 @@ public class MainMatriks {
             }
             System.out.println();
         }
+        M.getSPLCrammer();
         
-        double d = M.determinantOfMatrix(M.Mat,n);
-        System.out.println(d);
     } 
 }

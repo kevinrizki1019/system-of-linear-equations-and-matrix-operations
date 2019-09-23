@@ -416,16 +416,25 @@ public class matriks
                 }
                 double [] D = new double [temp.getidxKolom()];
                 double [] solution = new double [temp.getidxKolom()];
-                D[0] = determinantOfMatrix(temp.Mat, temp.getidxKolom());
-                if ( D[0] != 0)
+                double D_awal;
+                D_awal = determinantOfMatrix(temp.Mat, temp.getidxKolom());
+                if ( D_awal != 0)
                 {
                     for(int j = 0; j < temp.getidxKolom(); j++)
                     {
-                        for(int i = 0; i < temp.getidxKolom(); i++)
+                        for(int i = 0; i < temp.getidxBaris(); i++)
                         {
-                            
+                            temp.Mat[i][j] = this.getElement(i, temp.getidxKolom());
                         }
+                        solution[j] = determinantOfMatrix(temp.Mat, temp.getidxKolom()) / D_awal; 
+                        temp.TulisMatriks();
+                        temp.Mat = this.Mat;
                     }
+                    
+                }
+                for (int i = 0; i < temp.getidxKolom(); i ++ )
+                {
+                    System.out.println(solution[i]);
                 }
             }
             
