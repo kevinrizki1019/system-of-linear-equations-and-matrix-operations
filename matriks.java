@@ -129,7 +129,13 @@ public class matriks
 
     public void getTranspose(double result[][]) 
     {
-
+        for (int i = 0; i < this.getidxBaris(); i++ )
+        {
+            for (int j = 0; j < this.getidxKolom(); j++)
+            {
+                result [j][i] = getElement(i, j);
+            }
+        }
     }
 
     public void getAdjoin(double result[][]) 
@@ -366,7 +372,7 @@ public class matriks
                 {
                     for ( b = 0; b < l; b++)
                     {
-                        for (c = 0; c < l; c++ )
+                        for (c = 0; c < k; c++ )
                         {
                             sum = sum + this.getElement(a, c) * matriks2.getElement(c, b);
                         }
@@ -378,5 +384,18 @@ public class matriks
                 }
 
             }
-        }    
+        }
+        
+        public void getSPLCrammer()
+        {
+            matriks temp = new matriks (this.getidxBaris(), this.getidxKolom() - 1);
+            if ()
+            for (int i = 0; i < temp.getidxBaris(); i++)
+            {
+                for (int j = 0; j < temp.getidxKolom(); j++)
+                {
+                    temp.Mat[i][j] = this.getElement(i, j);
+                }
+            }
+        }
 }
