@@ -7,6 +7,7 @@ public class MainMatriks {
         
         n = input.nextInt();
         m = input.nextInt();
+<<<<<<< HEAD
     
         matriks M = new matriks(n,m);
         M.BacaMatriks();
@@ -23,6 +24,13 @@ public class MainMatriks {
         
         // double d = M.determinantOfMatrix(M.Mat,n);
         // System.out.println(d);
+=======
+        matriks M = new matriks(n,m);
+        M.BacaMatriks();
+
+        double[][] c = new double[n][n];
+        c= M.getMatriksCofactor(M.Mat,n);
+>>>>>>> 38dcc5e5e7d7f6f7889746785ac774c5e2848320
 
         double[][] AdjoinOfM = new double[n][n];
         AdjoinOfM = M.getAdjoin(M.Mat,n);
@@ -32,5 +40,10 @@ public class MainMatriks {
             }
             System.out.println();
         }
+<<<<<<< HEAD
+=======
+        M.getSPLCrammer();
+        
+>>>>>>> 38dcc5e5e7d7f6f7889746785ac774c5e2848320
     } 
 }
