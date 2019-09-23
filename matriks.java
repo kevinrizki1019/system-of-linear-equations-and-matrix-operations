@@ -10,12 +10,8 @@ BASIC:
 import java.io.*;
 import java.util.Scanner;
 
-<<<<<<< HEAD
-public class matriks {
-=======
 public class matriks 
 {
->>>>>>> 9fb23c40c7486aa5e9af7afa623c923de45fc91b
     Scanner input = new Scanner(System.in);
 
     /*** PROPERTIES ***/
@@ -169,27 +165,6 @@ public class matriks
 
     /* KELOMPOK OPERASI PADA MATRIKS*/
     public double[][] getCofactor(double matIn[][], int p, int q, int n) {
-<<<<<<< HEAD
-        /*  Prekondisi: matIn terdefinisi ukurannya sebesar n X n dan isinya */
-        /*  Fungsi getCofactor mengembalikan sebuah nlai double[][]
-            yaitu sub matriks untuk ekspansi kofaktor pada indeks p,q dari matIn */
-        /*  Ket: fungsi ini tidak memanipulasi object matriks karena 
-            fungsi ini akan dipakai di method yang lain (buat ngebenerin bug tadi) */
-        double[][] matOut = new double[n-1][n-1];  // Ukuran matriks cofactor akan selalu n-1 X n-1
-        int matOutBrs = 0, matOutKol = 0;
-        int matInBrs, matInKol;
-
-        for (matInBrs = 0; matInBrs < n; matInBrs++) {
-            for (matInKol = 0; matInKol < n; matInKol++) {
-                // Jika elemet berindeks [p,q] maka akan dilewati
-                if (matInBrs != p && matInKol != q) {
-                    matOut[matOutBrs][matOutKol++] = matIn[matInBrs][matInKol];
-
-                    // Increment nilai matOutKol lalu matOutBrs
-                    if (matOutKol == (n - 1)) {
-                        matOutKol = 0;
-                        matOutBrs++;
-=======
         // I.S. temp terdefinisi dan berukuran n-1 X n-1
         // F.s. temp berisi matriks cofactor p,q dari this.Mat 
         int i = 0, j = 0;
@@ -205,7 +180,6 @@ public class matriks
                     if (j == (n - 1)) {
                         j = 0;
                         i++;
->>>>>>> 9fb23c40c7486aa5e9af7afa623c923de45fc91b
                     }
                 }
             }
@@ -242,10 +216,6 @@ public class matriks
             return (D);
         }
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> 9fb23c40c7486aa5e9af7afa623c923de45fc91b
     public double[][] getMatriksCofactor(double matIn[][], int n) {
         /* Prekondisi: matIn terdefinisi isinya dan berukuran n X n */
         /* Fungsi getMatriksCofactor mengembalikan sebuah double[][]
@@ -277,23 +247,13 @@ public class matriks
         }
         return matTranspose;
     }
-<<<<<<< HEAD
-    // public double[][] getAdjoin(double[][] matIn) {
-    //     /* Adjoint adalah transpose dari matriks cofactor */
-    //     matriks cofactor = new matriks();
-    //     cofactor.Mat = getMatriksCofactor(this.Mat, idxBaris);
-    //     getTranspose(cofactor.Mat, cofactor.idxBaris, cofactor.idxKolom);
-    //     result = cofactor.Mat;
-    // }
-=======
 
     public void getAdjoin(double result[][]) {
         matriks cofactor = new matriks();
         cofactor.Mat = getMatriksCofactor(this.Mat, idxBaris);
-        getTranspose(cofactor.Mat);
+        getTranspose(cofactor.Mat, cofactor.idxBaris, cofactor.idxKolom);
         result = cofactor.Mat;
     }
->>>>>>> 9fb23c40c7486aa5e9af7afa623c923de45fc91b
     public void GaussElimination(double[][] matriks1)
     {
         double c=0;
@@ -390,10 +350,6 @@ public class matriks
             }
         }
     }
-<<<<<<< HEAD
-        
-=======
->>>>>>> 9fb23c40c7486aa5e9af7afa623c923de45fc91b
     
         public void Interpolasi() {
             int N = input.nextInt();
@@ -412,11 +368,6 @@ public class matriks
                 }
             }
             this.TulisMatriks();
-<<<<<<< HEAD
-        }  
-                 
-}
-=======
         }       
             
         public void KaliMatriks(matriks matriks2) // tanpa augmented
@@ -480,4 +431,3 @@ public class matriks
             
         }
 }
->>>>>>> 9fb23c40c7486aa5e9af7afa623c923de45fc91b

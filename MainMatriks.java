@@ -11,7 +11,7 @@ public class MainMatriks {
         M.BacaMatriks();
 
         double[][] c = new double[n][n];
-        c= M.getMatriksCofactor(n);
+        c= M.getMatriksCofactor(M.Mat,n);
 
         for (int i=0; i<n; i++) {
             for (int j=0; j<n; j++) {
