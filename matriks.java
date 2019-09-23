@@ -125,7 +125,8 @@ public class matriks {
     }
 
     public void getAdjoin(double result[][]) {
-        matriks cofactor = new matriks();
+        matriks cofactor = new matriks(this.idxBaris, this.idxBaris);
+        cofactor = this;
         this.getMatriksCofactor(cofactor.Mat);
         getTranspose(cofactor.Mat);
         result = cofactor.Mat;
