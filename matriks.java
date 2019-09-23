@@ -373,7 +373,7 @@ public class matriks
         public void KaliMatriks(matriks matriks2) // tanpa augmented
         {
             if (this.idxKolom != matriks2.idxBaris)
-                System.out.println("The matrices can't be multiplied with each other.");
+                System.out.println("Kedua Matriks tidak dapat dikalikan.");
             else
             {
                 double sum = 0;
@@ -426,15 +426,25 @@ public class matriks
                         {
                             temp.Mat[i][j] = this.getElement(i, temp.getidxKolom());
                         }
-                        solution[j] = determinantOfMatrix(temp.Mat, temp.getidxKolom()) / D_awal; 
-                        temp.TulisMatriks();
-                        temp.Mat = this.Mat;
+                        D[j] = determinantOfMatrix(temp.Mat, temp.getidxKolom());
+
+                        solution[j] = D[j] / D_awal; 
+
+
+                        // Tukar manual. Karena dimensi tidak sama
+                        for (int k = 0; k < temp.getidxBaris(); k++)
+                        {
+                            for (int l = 0; l < temp.getidxBaris(); l++)
+                            {
+                                temp.Mat[k][l] = this.getElement(k, l);
+                            }
+                        }
                     }
                     
                 }
-                for (int i = 0; i < temp.getidxKolom(); i ++ )
+                for (int k = 0; k < temp.getidxKolom(); k ++ )
                 {
-                    System.out.println(solution[i]);
+                    System.out.println(solution[k]);
                 }
             }
             
