@@ -347,7 +347,7 @@ public class matriks
             }
             this.TulisMatriks();
         }       
-        
+            
         public void KaliMatriks(matriks matriks2)
         {
             if (this.idxKolom != matriks2.idxBaris)
