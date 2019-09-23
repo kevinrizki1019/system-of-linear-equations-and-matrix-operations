@@ -1,15 +1,26 @@
+import java.util.Scanner;
+
 public class MainMatriks {
     public static void main(String[] args) {
-        MakeMatriks M = new MakeMatriks(3,3);
+        int n,m;
+        Scanner input = new Scanner(System.in);
+        
+        n = input.nextInt();
+
+        matriks M = new matriks(n,n);
         M.BacaMatriks();
-        M.TulisMatriks();
-        System.out.println("MENU");
-        System.out.println("1. Sistem Persamaan Linier");
-        System.out.println("2. Determinan");
-        System.out.println("3. Matriks balikan");
-        System.out.println("4. Matriks kofaktor");
-        System.out.println("5. Adjoin");
-        System.out.println("6. Interpolasi Polinom");
-        System.out.println("7. Keluar");
+
+        double[][] c = new double[n][n];
+        c= M.getMatriksCofactor(M.Mat, n);
+
+        for (int i=0; i<n; i++) {
+            for (int j=0; j<n; j++) {
+                System.out.print(c[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        double d = M.determinantOfMatrix(M.Mat,n);
+        System.out.println(d);
     } 
 }

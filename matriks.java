@@ -1,80 +1,189 @@
+// TUBES ALJABAR LINEAR DAN GEOMETRI 
+// Nama Kelompok: Kelompok16_13518072_13518100_13518141
+
+/*
+BASIC:
+    Buat nama yang meaningful
+
+*/
+
 import java.io.*;
 import java.util.Scanner;
 
-
 public class matriks {
     Scanner input = new Scanner(System.in);
-    /**
-     * Properties
-     */
+
+    /*** PROPERTIES ***/
     public double[][] Mat;
-    private int idxBaris = 0;
+    private int idxBaris = 0;     /* banyaknya ukuran baris yg terdefinisi */
+    private int idxKolom = 0;     /* banyaknya ukuran kolom yg terdefinisi */
+    private double determinan = 1;
 
-    /**
-     * banyaknya/ukuran kolom yg terdefinisi
-     */
-    private int idxKolom = 0;
+    /*** METHOD ***/
+    /* KONSTRUKTOR */    
+    public matriks () {
+    /* Membentuk object matriks dengan semua nilai properties berisi nilai default*/
+    }
 
-    /**
-     * Konstruktor
-     */
-    private double determinan=1;
-    
-    public matriks (int i, int j)
-    {
+    public matriks (int i, int j) {
+    /* Membentuk object matriks dengan nilai properties sesuai*/ 
         this.Mat = new double [i][j]; 
         this.idxBaris = i;
         this.idxKolom = j;
     }
 
-    /**
-     * Selektor
-     */
+    /* SELEKTOR untuk Object matriks yang terdefinisi */
     public double getElement(int i, int j) {
+    /* Mengirimkan element(i,j) pada property Mat[][] */
         return this.Mat[i][j];
     }
-
     public int getidxBaris() {
+    /* Mengirimkan nilai property idxBaris yaitu jumlah baris pada matriks */
         return this.idxBaris;
     }
-
-    public int setidxBaris(int newidxBaris) {
-        return this.idxBaris = newidxBaris;
-    }
-
     public int getidxKolom() {
+    /* Mengirimkan nilai property idxKolom yaitu jumlah kolom pada matriks */
         return this.idxKolom;
     }
-
-    public int setidxKolom(int newidxKolom) {
-        return this.idxKolom = newidxKolom;
-    }
     
-   public void setidx(int i, int j)
-    {
-        this.idxBaris = i;
-        this.idxKolom = j;
+    /* SETTER untuk menggasign properies pada Object */
+    public void setidxBaris(int newidxBaris) {
+    /* Mengassign nilai property idxBaris pada object dengan nilai yang baru newidxBaris 
+       I.S. Object terdefinisi
+       F.S. Property idxBaris pada Object berganti*/
+        this.idxBaris = newidxBaris;
     }
-    /**
-     * Determinan Cofactor
-     */
-    public void getCofactor(double temp[][], int p, int q, int n) {
+    public void setidxKolom(int newidxKolom) {
+    /* Mengassign nilai property idxKolom pada object dengan nilai yang baru newidxKolom 
+       I.S. Object terdefinisi
+       F.S. Property idxKolom pada Object berganti*/
+        this.idxKolom = newidxKolom;
+    }
+    public void setidx(int newidxBaris, int newidxKolom) {
+    /* Mengasign nilai property idxBaris pada object dengan nwidxBaris dan nilai property idxKolom dengan newidxKolom 
+       I.S. Object terdefinisi
+       F.S. Property idxBaris dan idxKolom pada Object berganti */
+        this.setidxBaris(newidxBaris);
+        this.setidxKolom(newidxKolom);
+    }
+
+    /* KELOMPOK BACA/TULIS */
+    public void BacaMatriks() {
+    /* I.S. Object matriks terdefinisi nilai idxBaris dan idxKolomnya */
+    /* F.S. M terdefinisi nilai semua elemennya, berukuran sesuai property objectnya
+            yaitu idxBaris x idxKolom */
+    /* Proses: Mengisi semua nilai elemen pada propety mat[][] sesuai yan terbaca dari masukan keyboard*/
+    /* Selanjutnya membaca nilai elemen per baris dan kolom */
+    /* Contoh: Jika idxBaris = 3 dan idxKolom = 3, maka contoh cara membaca isi matriks :
+    1 2 3
+    4 5 6
+    8 9 10
+    */
+        for(int i=0; i<this.idxBaris; i++){
+            for(int j=0; j<this.idxKolom; j++){
+                this.Mat[i][j] = input.nextDouble();
+            }
+        }    
+    } 
+    public void BacaMatriksFromFile(String f) {
+    /* I.S. Object matriks terdefinisi nilai idxBaris dan idxKolomnya */
+    /* F.S. M terdefinisi nilai semua elemennya, berukuran sesuai property objectnya
+            yaitu idxBaris x idxKolom */
+    /* Proses: Mengisi semua nilai elemen pada propety mat[][] sesuai yang terbaca dari file f*/
+        File file = new File(f);
+    
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String st;
+    
+            int i=0;
+            int kol=0;
+            while((st = br.readLine()) != null) {
+                String[] words = st.split("\\s+");
+                for (int j=0; j<words.length; j++) {
+                    double d = Double.parseDouble(words[j]);
+                    this.Mat[i][j] = d;
+                }
+                kol = words.length;
+                i++;
+            }
+            this.idxBaris = i;
+            this.idxKolom = kol;
+        }
+        // Kasus jika terjadi kegagalan dalam membaca file
+        catch (FileNotFoundException e) {
+            System.out.println(e);
+        }
+        catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+    public void TulisMatriks() {
+    /* I.S. Object matriks terdefinisi semua */
+    /* F.S. Nilai property Mat[i][j] ditulis ke layar per baris per kolom, masing-masing elemen per baris
+    dipisahkan sebuah spasi */
+    /* Proses: Menulis nilai setiap elemen Mat ke layar dengan traversal per baris dan per kolom */
+    /* Contoh: menulis matriks 3x3  (d akhir tiap baris tidak ada spasi dan diakhir baris terdapat enter)
+    1 2 3
+    4 5 6
+    8 9 10
+    */
+        for(int i=0; i<this.idxBaris; i++){
+            for(int j=0; j<this.idxKolom; j++){
+                System.out.format("%.2f ",this.Mat[i][j]);
+            }
+            System.out.println();
+        }
+    }
+    public void TulisMatriksToFile() {
+    /* I.S. Object matriks terdefinisi semua */
+    /* F.S. Nilai property Mat[i][j] ditulis ke file per baris per kolom, masing-masing elemen per baris
+    dipisahkan sebuah spasi */
+    /* Proses: Menulis nilai setiap elemen Mat ke file dengan traversal per baris dan per kolom */
+        String fileName = input.nextLine();
+        try {
+            FileWriter fw = new FileWriter(fileName);
+            for(int i=0; i<this.idxBaris; i++){
+                for(int j=0; j<this.idxKolom; j++){
+                    fw.write(Double.toString(this.Mat[i][j]));
+                    if (j!= this.idxKolom-1) {
+                        fw.write(" ");
+                    }
+                }
+                if (i != this.idxBaris-1) {
+                    fw.write(String.format("%n"));
+                }
+            }
+            fw.close();
+        }
+        // Kasus jika terjadi kegagalan dalam menulis ke file
+        catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    /* KELOMPOK OPERASI PADA MATRIKS*/
+    public double[][] getCofactor(double matIn[][], int p, int q, int n) {
+        // I.S. temp terdefinisi dan berukuran n-1 X n-1
+        // F.s. temp berisi matriks cofactor p,q dari this.Mat 
         int i = 0, j = 0;
 
+        double[][] matOut = new double[n-1][n-1]; 
         for (int row = 0; row < n; row++) {
             for (int col = 0; col < n; col++) {
 
                 // Jika elemet berindeks [p,q] maka akan dilewati
                 if (row != p && col != q) {
-                    temp[i][j++] = this.Mat[row][col];
+                    matOut[i][j++] = matIn[row][col];
 
-                    if (j == n - 1) {
+                    if (j == (n - 1)) {
                         j = 0;
                         i++;
                     }
                 }
             }
         }
+        return matOut;
     }
 
     /*
@@ -82,41 +191,67 @@ public class matriks {
      * of mat[][].
      */
     public double determinantOfMatrix(double mat[][], int n) {
-        int D = 0; // Set hasil akhir determinan
+//FIXED !! Masih ada yang salah?         
+        // Coba :
+        // 3 X 3
+        // 1 2 3
+        // 0 9 1    
+        // 0 0 -1
+        // Determinan(A) = -9, tapi hasilnya beda
+        double D = 0; // Set hasil akhir determinan
 
         // Hanya satu elemen
-        if (n == 1)
-            return mat[0][0];
+        if (n == 1) {
+            D += mat[0][0];
+            return (D);
+        } else {
 
-        // To store cofactors
-        double temp[][] = new double[this.getidxBaris()][this.getidxKolom()];
+            // To store cofactors
+            
 
-        // Untuk mengganti-ganti tanda saat menghitung determinan
-        int sign = 1;
+            // Untuk mengganti-ganti tanda saat menghitung determinan
+            int sign = 1;
 
-        // Menggunakan rumus mat[0][0]* cofactor mat[0][0] + ... + mat[0][f] * cofactor
-        // mat[0][f]
-        for (int f = 0; f < n; f++) {
-            // Getting Cofactor of mat[0][f]
-            getCofactor(temp, 0, f, n);
-            D += sign * mat[0][f] * determinantOfMatrix(temp, n - 1);
+            // Menggunakan rumus mat[0][0]* cofactor mat[0][0] + ... + mat[0][f] * cofactor
+            // mat[0][f]
+            for (int f = 0; f < n; f++) {
+                // Getting Cofactor of mat[0][f]
+                double temp[][];
+                temp = getCofactor(mat, 0, f, n);
+                
+                D += sign * mat[0][f] * determinantOfMatrix(temp, n-1);
 
-            // terms are to be added with
-            // alternate sign
-            sign = -sign;
+                // terms are to be added with
+                // alternate sign
+                sign = -1 * sign;
+            }
+
+            return (D);
         }
-
-        return D;
     }
 
-    public void getMatriksCofactor(double result[][]) {
-        double temp[][] = result;
-        for (int i = 0; i < getidxBaris(); i++) {
-            for (int j = 0; j < getidxKolom(); j++) {
-                this.getCofactor(temp, i, j, getidxBaris());
-                result[i][j] = determinantOfMatrix(temp, getidxBaris() - 1);
+    public double[][] getMatriksCofactor(double matIn[][], int n) {
+        // !! Masih salah
+        // Coba 2 X 2:
+        // 1 2
+        // 3 4
+        // Harusnya Kofaktornya:
+        // 4 -3
+        // -2 1
+        double temp[][] = new double[n-1][n-1];
+        double matOut[][] = new double[n][n];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                temp = getCofactor(matIn, i, j, n);
+                if ((i+j) % 2 == 0) {
+                    matOut[i][j] = determinantOfMatrix(temp, n - 1);
+                } else {
+                    matOut[i][j] = -1 * determinantOfMatrix(temp, n - 1);    
+                }
             }
         }
+        return matOut;
     }
 
     public void getTranspose(double result[][]) 
@@ -126,7 +261,7 @@ public class matriks {
 
     public void getAdjoin(double result[][]) {
         matriks cofactor = new matriks();
-        this.getMatriksCofactor(cofactor.Mat);
+        cofactor.Mat = getMatriksCofactor(this.Mat, idxBaris);
         getTranspose(cofactor.Mat);
         result = cofactor.Mat;
     }
@@ -162,6 +297,17 @@ public class matriks {
                     }
                 }
             }
+        }
+    }
+
+    public void tukar(double [][] matriks, int Brs1, int Brs2)
+    //I.S Brs1 adalah Baris yang ingin ditukar untuk berada pada Brs2 dengan elemen Brs1 tidak berubah (hanya berubah letak saja)
+    {
+        double temp;
+        for (int j=0; j<idxKolom; j++ ){
+            temp=matriks[Brs1][j];
+            matriks[Brs1][j]=matriks[Brs2][j];
+            matriks[Brs2][j]=temp;
         }
     }
 
@@ -215,75 +361,7 @@ public class matriks {
             }
         }
     }
-        public void BacaMatriks() 
-        {
-            for(int i=0; i<this.idxBaris; i++){
-                for(int j=0; j<this.idxKolom; j++){
-                    this.Mat[i][j] = input.nextDouble();
-                }
-            }    
-        } 
-    
-        public void BacaMatriksFromFile(String f) {
-            File file = new File(f);
-    
-            try {
-                BufferedReader br = new BufferedReader(new FileReader(file));
-                String st;
-    
-                int i=0;
-                int kol=0;
-                while((st = br.readLine()) != null) {
-                    String[] words = st.split("\\s+");
-                    for (int j=0; j<words.length; j++) {
-                        double d = Double.parseDouble(words[j]);
-                        this.Mat[i][j] = d;
-                    }
-                    kol = words.length;
-                    i++;
-                }
-                this.idxBaris = i;
-                this.idxKolom = kol;
-            }
-            catch (FileNotFoundException e) {
-                System.out.println(e);
-            }
-            catch (IOException e) {
-                System.out.println(e);
-            }
-        }
         
-        public void TulisMatriks() 
-        {
-            for(int i=0; i<this.idxBaris; i++){
-                for(int j=0; j<this.idxKolom; j++){
-                    System.out.format("%.2f ",this.Mat[i][j]);
-                }
-                System.out.println();
-            }
-        }
-        
-        public void TulisMatriksToFile() {
-            String fileName = input.nextLine();
-            try {
-                FileWriter fw = new FileWriter(fileName);
-                for(int i=0; i<this.idxBaris; i++){
-                    for(int j=0; j<this.idxKolom; j++){
-                        fw.write(Double.toString(this.Mat[i][j]));
-                        if (j!= this.idxKolom-1) {
-                            fw.write(" ");
-                        }
-                    }
-                    if (i != this.idxBaris-1) {
-                        fw.write(String.format("%n"));
-                    }
-                }
-                fw.close();
-            }
-            catch (Exception e) {
-                System.out.println(e);
-            }
-        }
     
         public void Interpolasi() {
             int N = input.nextInt();
