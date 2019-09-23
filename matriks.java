@@ -4,19 +4,13 @@
 /*
 BASIC:
     Buat nama yang meaningful
-
+    Tulis comment seperlunya untuk membantu
 */
 
 import java.io.*;
 import java.util.Scanner;
 
-<<<<<<< HEAD
 public class matriks {
-=======
-
-public class matriks 
-{
->>>>>>> dba88f13f2a80ad0f68c23cbc178b8b7c776b3ac
     Scanner input = new Scanner(System.in);
 
     /*** PROPERTIES ***/
@@ -170,96 +164,65 @@ public class matriks
 
     /* KELOMPOK OPERASI PADA MATRIKS*/
     public double[][] getCofactor(double matIn[][], int p, int q, int n) {
-        // I.S. temp terdefinisi dan berukuran n-1 X n-1
-        // F.s. temp berisi matriks cofactor p,q dari this.Mat 
-        int i = 0, j = 0;
+        /*  Prekondisi: matIn terdefinisi ukurannya sebesar n X n dan isinya */
+        /*  Fungsi getCofactor mengembalikan sebuah nlai double[][]
+            yaitu sub matriks untuk ekspansi kofaktor pada indeks p,q dari matIn */
+        /*  Ket: fungsi ini tidak memanipulasi object matriks karena 
+            fungsi ini akan dipakai di method yang lain (buat ngebenerin bug tadi) */
+        double[][] matOut = new double[n-1][n-1];  // Ukuran matriks cofactor akan selalu n-1 X n-1
+        int matOutBrs = 0, matOutKol = 0;
+        int matInBrs, matInKol;
 
-<<<<<<< HEAD
-        double[][] matOut = new double[n-1][n-1]; 
-        for (int row = 0; row < n; row++) {
-            for (int col = 0; col < n; col++) {
-
+        for (matInBrs = 0; matInBrs < n; matInBrs++) {
+            for (matInKol = 0; matInKol < n; matInKol++) {
                 // Jika elemet berindeks [p,q] maka akan dilewati
-                if (row != p && col != q) {
-                    matOut[i][j++] = matIn[row][col];
+                if (matInBrs != p && matInKol != q) {
+                    matOut[matOutBrs][matOutKol++] = matIn[matInBrs][matInKol];
 
-                    if (j == (n - 1)) {
-=======
-        for (int row = 0; row < n; row++) 
-        {
-            for (int col = 0; col < n; col++) 
-            {
-
-                // Jika elemet berindeks [p,q] maka akan dilewati
-                if (row != p && col != q) 
-                {
-                    temp[i][j++] = this.Mat[row][col];
-
-                    if (j == n - 1) 
-                    {
->>>>>>> dba88f13f2a80ad0f68c23cbc178b8b7c776b3ac
-                        j = 0;
-                        i++;
+                    // Increment nilai matOutKol lalu matOutBrs
+                    if (matOutKol == (n - 1)) {
+                        matOutKol = 0;
+                        matOutBrs++;
                     }
                 }
             }
         }
         return matOut;
     }
-
-    /*
-     * Recursive function for finding determinant of matrix. n is current dimension
-     * of mat[][].
-     */
     public double determinantOfMatrix(double mat[][], int n) {
-//FIXED !! Masih ada yang salah?         
-        // Coba :
-        // 3 X 3
-        // 1 2 3
-        // 0 9 1    
-        // 0 0 -1
-        // Determinan(A) = -9, tapi hasilnya beda
-        double D = 0; // Set hasil akhir determinan
+        /* Prekondisi: matriks mat terdefinisi dengan ukuran sebesar n X n */
+        /* Fungsi determinantOfMatrix mengembalikan nilai determinan dari matriks mat */
+        /* Untuk ngetes coba di https://www.iotools.net/math/matrix-determinant-calculator */
+        
+        // Set hasil akhir determinan
+        double D = 0; 
 
-        // Hanya satu elemen
+        // Basis jika hanya satu elemen
         if (n == 1) {
             D += mat[0][0];
             return (D);
         } else {
-
-            // To store cofactors
-            
-
             // Untuk mengganti-ganti tanda saat menghitung determinan
             int sign = 1;
 
-            // Menggunakan rumus mat[0][0]* cofactor mat[0][0] + ... + mat[0][f] * cofactor
-            // mat[0][f]
             for (int f = 0; f < n; f++) {
-                // Getting Cofactor of mat[0][f]
+                // Mendapatkan matriks cofactor pada mat[0][f]
                 double temp[][];
                 temp = getCofactor(mat, 0, f, n);
-                
+
+                // Menggunakan rumus mat[0][0]* cofactor mat[0][0] +-... + mat[0][f] * cofactor mat[0][f]
                 D += sign * mat[0][f] * determinantOfMatrix(temp, n-1);
 
-                // terms are to be added with
-                // alternate sign
+                // Nilai sign berganti antara 1 dan -1
                 sign = -1 * sign;
             }
-
             return (D);
         }
     }
-
-<<<<<<< HEAD
     public double[][] getMatriksCofactor(double matIn[][], int n) {
-        // !! Masih salah
-        // Coba 2 X 2:
-        // 1 2
-        // 3 4
-        // Harusnya Kofaktornya:
-        // 4 -3
-        // -2 1
+        /* Prekondisi: matIn terdefinisi isinya dan berukuran n X n */
+        /* Fungsi getMatriksCofactor mengembalikan sebuah double[][]
+           yaitu matriks kofaktor hasil peng-kofaktoran terhadap matIn */
         double temp[][] = new double[n-1][n-1];
         double matOut[][] = new double[n][n];
 
@@ -271,87 +234,58 @@ public class matriks
                 } else {
                     matOut[i][j] = -1 * determinantOfMatrix(temp, n - 1);    
                 }
-=======
-    public void getMatriksCofactor(double result[][]) 
-    {
-        double temp[][] = result;
-        for (int i = 0; i < getidxBaris(); i++) 
-        {
-            for (int j = 0; j < getidxKolom(); j++) 
-            {
-                this.getCofactor(temp, i, j, getidxBaris());
-                result[i][j] = determinantOfMatrix(temp, getidxBaris() - 1);
->>>>>>> dba88f13f2a80ad0f68c23cbc178b8b7c776b3ac
             }
         }
         return matOut;
     }
-
-    public void getTranspose(double result[][]) 
-    {
-        for (int i = 0; i < this.getidxBaris(); i++ )
-        {
-            for (int j = 0; j < this.getidxKolom(); j++)
-            {
-                result [j][i] = getElement(i, j);
+    public double[][] getTranspose(double[][] matIn, int n, int m) {
+        double[][] matTranspose;
+        int i,j;        
+        
+        matTranspose = new double[m][n];
+        for (i=0; i<m; i++) {
+            for (j=0; j<n; j++) {
+                matTranspose[i][j] = this.Mat[j][i];
             }
         }
+        return matTranspose;
     }
-
-<<<<<<< HEAD
-    public void getAdjoin(double result[][]) {
-        matriks cofactor = new matriks();
-        cofactor.Mat = getMatriksCofactor(this.Mat, idxBaris);
-=======
-    public void getAdjoin(double result[][]) 
-    {
-        matriks cofactor = new matriks(this.idxBaris, this.idxBaris);
-        cofactor = this;
-        this.getMatriksCofactor(cofactor.Mat);
->>>>>>> dba88f13f2a80ad0f68c23cbc178b8b7c776b3ac
-        getTranspose(cofactor.Mat);
-        result = cofactor.Mat;
-    }
+    // public double[][] getAdjoin(double[][] matIn) {
+    //     /* Adjoint adalah transpose dari matriks cofactor */
+    //     matriks cofactor = new matriks();
+    //     cofactor.Mat = getMatriksCofactor(this.Mat, idxBaris);
+    //     getTranspose(cofactor.Mat, cofactor.idxBaris, cofactor.idxKolom);
+    //     result = cofactor.Mat;
+    // }
     public void GaussElimination(double[][] matriks1)
     {
         double c=0;
-        for(int j=0; j<this.idxKolom-1; j++)
-        {             //akses Eliminasi
-            for(int i=0; i<this.idxBaris; i++)
-            {         //Per Kolom yang mana j menyatakan kolom dan i menyatakan baris
-                if(i>j)
-                {
+        for(int j=0; j<this.idxKolom-1; j++){             //akses Eliminasi
+            for(int i=0; i<this.idxBaris; i++){         //Per Kolom yang mana j menyatakan kolom dan i menyatakan baris
+                if(i>j){
                     int idx=0;
                     int l=1;
-                    if (matriks1[j][j]==0)
-                    {
-                        for (idx=0; j+idx<this.idxKolom-1 && l!=this.idxBaris+1; idx++)
-                        {    
-                            for (l=1; l<this.idxBaris-i;l++)
-                            {
-                                if(matriks1[j][j+idx]!=0)
-                                {
+                    if (matriks1[j][j]==0){
+                        for (idx=0; j+idx<this.idxKolom-1 && l!=this.idxBaris+1; idx++){    
+                            for (l=1; l<this.idxBaris-i;l++){
+                                if(matriks1[j][j+idx]!=0){
                                     l=this.idxBaris+1;
                                 }
-                                else
-                                {
+                                else{
                                     tukar(matriks1,j,j+l);
                                     determinan*=-1;
                                 }
                             }
                         }
                     }
-                    if (matriks1[j][j+idx]!=0)
-                    {
+                    if (matriks1[j][j+idx]!=0){
                         c=matriks1[i][j]/ matriks1[j][j+idx];
-                        for(int k=0; k<this.idxKolom; k++)
-                        {  //pengurangan matriks per baris
+                        for(int k=0; k<this.idxKolom; k++){  //pengurangan matriks per baris
                             matriks1[i][k]=matriks1[i][k]-c*matriks1[j][k];
-                            if(matriks1[i][k]==-0)
-                            {
-                                matriks1[i][k]=0;
-                            }
-                        }
+                            if(matriks1[i][k]==-0){
+                                    matriks1[i][k]=0;
+                                }
+                         }
                     }
                 }
             }
@@ -419,164 +353,25 @@ public class matriks
             }
         }
     }
-<<<<<<< HEAD
         
-=======
-        public void BacaMatriks() 
-        {
-            for(int i=0; i<this.idxBaris; i++)
-            {
-                for(int j=0; j<this.idxKolom; j++)
-                {
-                    this.Mat[i][j] = input.nextDouble();
-                }
-            }    
-        } 
     
-        public void BacaMatriksFromFile(String f) 
-        {
-            File file = new File(f);
-    
-            try 
-            {
-                BufferedReader br = new BufferedReader(new FileReader(file));
-                String st;
-    
-                int i=0;
-                int kol=0;
-                while((st = br.readLine()) != null) 
-                {
-                    String[] words = st.split("\\s+");
-                    for (int j=0; j<words.length; j++) 
-                    {
-                        double d = Double.parseDouble(words[j]);
-                        this.Mat[i][j] = d;
-                    }
-            
-                    kol = words.length;
-                    i++;
-                }
-                this.idxBaris = i;
-                this.idxKolom = kol;
-            }
-            catch (FileNotFoundException e) 
-            {
-                System.out.println(e);
-            }
-            catch (IOException e) 
-            {
-                System.out.println(e);
-            }
-        }
-        
-        public void TulisMatriks() 
-        {
-            for(int i=0; i<this.idxBaris; i++)
-            {
-                for(int j=0; j<this.idxKolom; j++)
-                {
-                    System.out.format("%.2f ",this.Mat[i][j]);
-                }
-                System.out.println();
-            }
-        }
-        
-        public void TulisMatriksToFile() 
-        {
-            String fileName = input.nextLine();
-            try 
-            {
-                FileWriter fw = new FileWriter(fileName);
-                for(int i=0; i<this.idxBaris; i++)
-                {
-                    for(int j=0; j<this.idxKolom; j++)
-                    {
-                        fw.write(Double.toString(this.Mat[i][j]));
-                        if (j!= this.idxKolom-1) 
-                        {
-                            fw.write(" ");
-                        }
-                    }
-                    if (i != this.idxBaris-1) 
-                    {
-                        fw.write(String.format("%n"));
-                    }
-                }
-                fw.close();
-            }
-            catch (Exception e) {
-                System.out.println(e);
-            }
-        }
->>>>>>> dba88f13f2a80ad0f68c23cbc178b8b7c776b3ac
-    
-        public void Interpolasi() 
-        {
+        public void Interpolasi() {
             int N = input.nextInt();
             double x,y;
     
             this.setidx(N, N+1);
-            for (int i=0; i<N; i++) 
-            {
+            for (int i=0; i<N; i++) {
                 x = input.nextDouble();
                 y = input.nextDouble();
-                for (int j=0; j<N+1; j++) 
-                {
-                    if (j != N)
-                    {
+                for (int j=0; j<N+1; j++) {
+                    if (j != N){
                         this.Mat[i][j] = Math.pow(x, j);
-                    } 
-                    else 
-                    {
+                    } else {
                         this.Mat[i][j] = y;
                     }
                 }
             }
             this.TulisMatriks();
-        }       
-            
-        public void KaliMatriks(matriks matriks2)
-        {
-            if (this.idxKolom != matriks2.idxBaris)
-                System.out.println("The matrices can't be multiplied with each other.");
-            else
-            {
-                double sum = 0;
-                int i,j,k,l;
-                i = this.idxBaris;
-                j = this.idxKolom;
-
-                k = matriks2.idxBaris;
-                l = matriks2.idxKolom;
-                int a,b,c;
-                for ( a = 0; a < i; a++)
-                {
-                    for ( b = 0; b < l; b++)
-                    {
-                        for (c = 0; c < k; c++ )
-                        {
-                            sum = sum + this.getElement(a, c) * matriks2.getElement(c, b);
-                        }
-                    }   
-
-                    this.Mat[a][b] = sum;
-                    sum = 0;
-                    
-                }
-
-            }
-        }
-        
-        public void getSPLCrammer()
-        {
-            matriks temp = new matriks (this.getidxBaris(), this.getidxKolom() - 1);
-            if ()
-            for (int i = 0; i < temp.getidxBaris(); i++)
-            {
-                for (int j = 0; j < temp.getidxKolom(); j++)
-                {
-                    temp.Mat[i][j] = this.getElement(i, j);
-                }
-            }
-        }
+        }  
+                 
 }
