@@ -354,7 +354,7 @@ public class matriks
             this.TulisMatriks();
         }       
             
-        public void KaliMatriks(matriks matriks2)
+        public void KaliMatriks(matriks matriks2) // tanpa augmented
         {
             if (this.idxKolom != matriks2.idxBaris)
                 System.out.println("The matrices can't be multiplied with each other.");
@@ -389,13 +389,29 @@ public class matriks
         public void getSPLCrammer()
         {
             matriks temp = new matriks (this.getidxBaris(), this.getidxKolom() - 1);
-            if ()
-            for (int i = 0; i < temp.getidxBaris(); i++)
+            if (temp.getidxBaris() == temp.getidxKolom())
             {
-                for (int j = 0; j < temp.getidxKolom(); j++)
+                for (int i = 0; i < temp.getidxBaris(); i++)
                 {
-                    temp.Mat[i][j] = this.getElement(i, j);
+                    for (int j = 0; j < temp.getidxKolom(); j++)
+                    {
+                        temp.Mat[i][j] = this.getElement(i, j);
+                    }
+                }
+                double [] D = new double [temp.getidxKolom()];
+                double [] solution = new double [temp.getidxKolom()];
+                D[0] = determinantOfMatrix(temp.Mat, temp.getidxKolom());
+                if ( D[0] != 0)
+                {
+                    for(int j = 0; j < temp.getidxKolom(); j++)
+                    {
+                        for(int i = 0; i < temp.getidxKolom(); i++)
+                        {
+                            
+                        }
+                    }
                 }
             }
+            
         }
 }
