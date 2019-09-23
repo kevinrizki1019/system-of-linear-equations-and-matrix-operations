@@ -363,20 +363,24 @@ public class matriks {
     {            
         int N = input.nextInt();
         double x,y;
-    
-        this.setidx(N, N+1);
+        
+        matriks temp = new matriks(N, N+1);
         for (int i=0; i<N; i++) {
             x = input.nextDouble();
             y = input.nextDouble();
             for (int j=0; j<N+1; j++) {
                 if (j != N){
-                    this.Mat[i][j] = Math.pow(x, j);
+                    temp.Mat[i][j] = Math.pow(x, j);
                 } else {
-                    this.Mat[i][j] = y;
+                    temp.Mat[i][j] = y;
                 }
             }
+
         }
-        this.TulisMatriks();
+
+
+        temp.TulisMatriks();
+        getSPLCrammer();
     }  
     public void invers (double[][] matriks1)
     //I.S Masukan Matriks belum mengalami OBE (ELIMINASI GAUSS JORDAN)
@@ -705,7 +709,7 @@ public class matriks {
    public void TulisSPLMatriksBalikan (double [][] matriksInvers, double [][] onlyAugmented, int idxBarisInvers, int idxKolomAugmented )
      {
          double[][] matriks= new double[idxBarisInvers][idxKolomAugmented];
-         matriks=KaliMatriks(matriksInvers,onlyAugmented,idxBarisInvers,idxKolomAugmented);
+         matriks = KaliMatriks(matriksInvers,onlyAugmented,idxBarisInvers,idxKolomAugmented);
          for (int i=0; i<idxBarisInvers; i++){
              if(i!=idxBarisInvers-1){
                  System.out.format("x%d=%.2f,",i+1,matriks[i][idxKolomAugmented]);
@@ -714,7 +718,8 @@ public class matriks {
                  System.out.format("dan x%d=%.2f.",i+1,matriks[i][idxKolomAugmented]);
              }
          }
-     } 
+     }
+    
      
      public double [][] OnlyAugmented (double[][] matriks) {
          double [][] matriks1= new double[idxBaris][1];
@@ -766,7 +771,14 @@ public class matriks {
              }
              for (int k = 0; k < temp.getidxKolom(); k ++ )
              {
-                 System.out.println(solution[k]);
+                if (k != temp.getidxKolom())
+                {
+                    System.out.print("x" + k + " = " + solution[k] + ", ");
+                }
+                else
+                {
+                    System.out.println("dan x" + k + " = " + solution[k] );
+                }
              }
          }
          
