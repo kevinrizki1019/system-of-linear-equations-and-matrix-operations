@@ -88,6 +88,7 @@ public class Menu {
                     }
                     else{
                         Matriks.matriks(idxBar,idxKol);
+                        Matriks.TulisSPLMatriksBalikan();
                     }
                 }
             }
