@@ -740,7 +740,28 @@ public class matriks {
               }
          
      }
-   public void TulisSPLMatriksBalikan ( )
+     public void getMatriksInvers()
+     {
+         getAdjoin(this.Mat, this.getidxBaris());
+         double D = determinantOfMatrix(this.Mat, this.getidxBaris());
+         for(int i = 0; i < this.getidxBaris(); i++)
+         {
+             for (int j = 0; j < this.getidxKolom(); j++)
+             {
+                this.Mat[i][j] = getElement(i, j) / D;
+             }
+         }
+     }
+     public double[][] getWithoutAugmented()
+     {
+         double[][] matriks_withoutAugmented = new double [this.getidxBaris()][this.getidxBaris()-1];
+         
+         for(int i = 0; i < this.getidxBaris(); i++ )
+         {
+            
+         }
+     }
+     public void TulisSPLMatriksBalikan ( )
      {
         int idxBarisInvers = this.idxBaris;
         int idxKolomInvers = this.idxKolom - 1;
@@ -749,13 +770,13 @@ public class matriks {
         matriks matriks_withoutAugmented = new matriks (idxBarisInvers , idxKolomInvers);
         for (int i = 0; i < idxBarisInvers; i++ )
         {
-            for (int j = 0; j < idxBarisInvers; j++ )
+            for (int j = 0; j < idxKolomInvers; j++ )
             {
                 matriks_withoutAugmented.Mat[i][j] = this.getElement(i, j);
             }
         }
 
-        matriks_withoutAugmented.invers(matriks_invers.Mat);
+        matriks_withoutAugmented.getMatriksInvers();
 
         matriks matriks_hasil = new matriks(idxBarisInvers,1);
         matriks_hasil.Mat = KaliMatriks(matriks_invers.Mat, matriks_onlyAugmented.Mat,idxBarisInvers,1);
