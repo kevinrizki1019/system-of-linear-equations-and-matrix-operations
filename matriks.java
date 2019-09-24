@@ -375,13 +375,47 @@ public class matriks {
                     temp.Mat[i][j] = y;
                 }
             }
-
         }
+        double [] D = new double [temp.getidxKolom()];
+        double [] solution = new double [temp.getidxKolom()];
+        double D_awal;
+        D_awal = determinantOfMatrix(temp.Mat, temp.getidxKolom());
+        if ( D_awal != 0)
+        {
+            for(int j = 0; j < temp.getidxKolom(); j++)
+            {
+                for(int i = 0; i < temp.getidxBaris(); i++)
+                {
+                    temp.Mat[i][j] = this.getElement(i, temp.getidxKolom());
+                }
+        
+                D[j] = determinantOfMatrix(temp.Mat, temp.getidxKolom());
+                solution[j] = D[j] / D_awal; 
 
+                // manual
+                for (int k = 0; k < temp.getidxBaris(); k++)
+                {
+                    for (int l = 0; l < temp.getidxBaris(); l++)
+                    {
+                        temp.Mat[k][l] = this.getElement(k, l);
+                    }
+                }
+            }
+                
+        }
+        for (int k = 0; k < temp.getidxKolom(); k ++ )
+        {
+            if (k != temp.getidxKolom())
+            {
+                System.out.print("x" + k + " = " + solution[k] + ", ");
+            }
+            else
+            {
+                System.out.println("dan x" + k + " = " + solution[k] );
+            }
+        }
+    }
 
-        temp.TulisMatriks();
-        getSPLCrammer();
-    }  
     public void invers (double[][] matriks1)
     //I.S Masukan Matriks belum mengalami OBE (ELIMINASI GAUSS JORDAN)
     {
@@ -706,16 +740,31 @@ public class matriks {
               }
          
      }
-   public void TulisSPLMatriksBalikan (double [][] matriksInvers, double [][] onlyAugmented, int idxBarisInvers, int idxKolomAugmented )
+   public void TulisSPLMatriksBalikan ( )
      {
-         double[][] matriks= new double[idxBarisInvers][idxKolomAugmented];
-         matriks = KaliMatriks(matriksInvers,onlyAugmented,idxBarisInvers,idxKolomAugmented);
+        int idxBarisInvers = this.idxBaris;
+        int idxKolomInvers = this.idxKolom - 1;
+        matriks matriks_invers = new matriks (idxBarisInvers, idxKolomInvers);
+        matriks matriks_onlyAugmented = new matriks (this.getidxBaris(), 1);
+        matriks matriks_withoutAugmented = new matriks (idxBarisInvers , idxKolomInvers);
+        for (int i = 0; i < idxBarisInvers; i++ )
+        {
+            for (int j = 0; j < idxBarisInvers; j++ )
+            {
+                matriks_withoutAugmented.Mat[i][j] = this.getElement(i, j);
+            }
+        }
+
+        matriks_withoutAugmented.invers(matriks_invers.Mat);
+
+        matriks matriks_hasil = new matriks(idxBarisInvers,1);
+        matriks_hasil.Mat = KaliMatriks(matriks_invers.Mat, matriks_onlyAugmented.Mat,idxBarisInvers,1);
          for (int i=0; i<idxBarisInvers; i++){
              if(i!=idxBarisInvers-1){
-                 System.out.format("x%d=%.2f,",i+1,matriks[i][idxKolomAugmented]);
+                 System.out.format("x%d=%.2f,",i+1,matriks_hasil.Mat[i][0]);
              }
              else{
-                 System.out.format("dan x%d=%.2f.",i+1,matriks[i][idxKolomAugmented]);
+                 System.out.format("dan x%d=%.2f.",i+1,matriks_hasil.Mat[i][0]);
              }
          }
      }
