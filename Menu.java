@@ -123,11 +123,11 @@ public class Menu {
         ResetLayar();
     }
     
-    public void MenuSPLKaidahCramer (double [][] matriks){
+    public void MenuSPLKaidahCramer (){
         
     }
     
-    public void MenuDeterminanOBE (double [][] matriks){
+    public void MenuDeterminanOBE (){
         int idxBar,idxKol,opsi;
         boolean check=true;
         ResetLayar();
@@ -189,11 +189,11 @@ public class Menu {
         ResetLayar();
     }
     
-    public void MenuDeterminanKofaktor (double [][] matriks){
+    public void MenuDeterminanKofaktor (){
         
     }
     
-    public void MenuInversOBE (double [][] matriks){
+    public void MenuInversOBE (){
         int idxBar,idxKol,opsi;
         boolean check=true;
         ResetLayar();
@@ -255,19 +255,19 @@ public class Menu {
         ResetLayar();
     }
     
-    public void MenuInversAdjoint (double [][] matriks){
+    public void MenuInversAdjoint (){
         
     }
     
-    public void MenuMatriksKofaktor (double [][] matriks){
+    public void MenuMatriksKofaktor (){
         
     }
     
-    public void MenuAdjoin (double [][] matriks){
+    public void MenuAdjoin (){
         
     }
     
-    public void MenuInterpolasiPolinom (double [][] matriks){
+    public void MenuInterpolasiPolinom (){
         
     }
     
