@@ -406,10 +406,13 @@ public class matriks {
 
     public void Interpolasi() {
         double x,y;
+        int N;
+        
+        N = input.nextInt();
         for (int i = 0; i < N; i++) {
             x = input.nextDouble();
             y = input.nextDouble();
-            for (int j = 0; j < N + 1; j++) {
+            for (int j = 0; j < N+1; j++) {
                 if (j != N) {
                     this.Mat[i][j] = Math.pow(x, j);
                 } else {
