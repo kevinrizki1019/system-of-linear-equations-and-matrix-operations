@@ -35,7 +35,7 @@ public class MainMatriks {
     }
     public void Menu1() {
         System.out.println("SISTEM PERSAMAAN LINIER");
-        System.out.println("1. Metode elimiasi Gauss");
+        System.out.println("1. Metode eliminasi Gauss");
         System.out.println("2. Metode eliminasi Gauss-Jordan");
         System.out.println("3. Metode matriks balikan");
         System.out.println("4. Metode Cramer");
