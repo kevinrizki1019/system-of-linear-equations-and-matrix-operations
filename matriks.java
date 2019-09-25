@@ -868,6 +868,31 @@ public class matriks {
         matriks_withoutAugmented.Mat = this.getWithoutAugmented();
         
         matriks_onlyAugmented.Mat = OnlyAugmented(this.Mat);
+        
+        matriks_withoutAugmented.invers(matriks_invers.Mat);
+
+        matriks matriks_hasil = new matriks(idxBarisInvers,1);
+        matriks_hasil.Mat = matriks_withoutAugmented.KaliMatriks(matriks_invers.Mat, matriks_onlyAugmented.Mat,idxBarisInvers,1);
+        for (int i=0; i<idxBarisInvers; i++){
+             if(i!=idxBarisInvers-1){
+                 System.out.format("x%d=%.2f,",i+1,matriks_hasil.Mat[i][0]);
+             }
+             else{
+                 System.out.format("dan x%d=%.2f.",i+1,matriks_hasil.Mat[i][0]);
+                 System.out.println("");
+             }
+         }
+     }
+     public void TulisSPLMatriksBalikanCrammer()
+     {
+        int idxBarisInvers = this.idxBaris;
+        int idxKolomInvers = this.idxKolom - 1;
+        matriks matriks_invers = new matriks (idxBarisInvers, idxKolomInvers);
+        matriks matriks_onlyAugmented = new matriks (idxBarisInvers , 1);
+        matriks matriks_withoutAugmented = new matriks (idxBarisInvers , idxKolomInvers);
+        matriks_withoutAugmented.Mat = this.getWithoutAugmented();
+        
+        matriks_onlyAugmented.Mat = OnlyAugmented(this.Mat);
         matriks_withoutAugmented.getMatriksInvers();
         matriks_invers = matriks_withoutAugmented;
 
@@ -893,7 +918,7 @@ public class matriks {
          return matriks1;
      }
 
-     public void getSPLCrammer()
+     public void TulisSPLCrammer()
      {
          matriks temp = new matriks (this.getidxBaris(), this.getidxKolom() - 1);
          if (temp.getidxBaris() == temp.getidxKolom())

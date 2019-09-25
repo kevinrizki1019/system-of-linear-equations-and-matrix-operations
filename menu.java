@@ -109,18 +109,37 @@ public class menu  {
                         matriks[i][j]=Matriks.getElement(i,j);
                     }
                 }
-                augmented=Matriks.OnlyAugmented(matriks);
-                Matriks.invers(matriks);
                 Matriks.TulisSPLMatriksBalikan();
             }
             else if(opsi==2){
-                
+                double [][] matriks,augmented;
+                matriks=new double [idxBar][idxKol];
+                for (int i=0; i<idxBar; i++){
+                    for (int j=0; j<idxKol; j++){
+                        matriks[i][j]=Matriks.getElement(i,j);
+                    }
+                }
+                Matriks.TulisSPLMatriksBalikanCrammer();
             }
         }
     }
     
     public void MenuSPLKaidahCramer (){
-        
+        int idxBar,idxKol;
+        ResetLayar();
+        System.out.format("Metode Kaidah Crammer\n");
+        System.out.format("Akan dibuat Matriks Augmented dengan ukuran BarisxKolom \n");
+        System.out.format("Masukkan Banyaknya Baris: ");
+        idxBar=input.nextInt();
+        System.out.println();
+        System.out.format("Masukkan Banyaknya Kolom: ");
+        idxKol=input.nextInt();
+        System.out.println();
+       matriks Matriks = new matriks(idxBar, idxKol);
+        System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
+        Matriks.BacaMatriks();
+        System.out.println();
+        Matriks.TulisSPLCrammer();
     }
     
     public void MenuDeterminanOBE (){
