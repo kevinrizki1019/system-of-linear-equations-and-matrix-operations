@@ -322,8 +322,8 @@ public class menu  {
         System.out.format("Akan dibuat persamaan polinom yang melewati titik-titik uji \n");
         System.out.format("Masukkan Banyaknya titik uji: ");
         int N = input.nextInt();
-        matriks temp = new matriks(N, N + 1);
-        temp.Interpolasi();
+        matriks Matriks = new matriks(N, N + 1);
+        Matriks.Interpolasi();
     }
     
     public void ResetLayar (){

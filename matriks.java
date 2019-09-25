@@ -405,49 +405,73 @@ public class matriks {
     }
 
     public void Interpolasi() {
-        double x,y;
+
+        matriks MatIn = new matriks (this.getidxBaris(), this.getidxKolom());
+        int N = MatIn.getidxBaris();
         for (int i = 0; i < N; i++) {
-            x = input.nextDouble();
-            y = input.nextDouble();
+            double x = input.nextDouble();
+            double y = input.nextDouble();
             for (int j = 0; j < N + 1; j++) {
                 if (j != N) {
-                    this.Mat[i][j] = Math.pow(x, j);
+                    MatIn.Mat[i][j] = Math.pow(x, j);
                 } else {
-                    this.Mat[i][j] = y;
+                    MatIn.Mat[i][j] = y;
                 }
-                System.out.println(j);
             }
-            System.out.println(i);
         }
-        double[] D = new double[this.getidxKolom()];
-        double[] solution = new double[this.getidxKolom()];
-        double D_awal;
-        D_awal = determinantOfMatrix(this.Mat, this.getidxKolom());
-        if (D_awal != 0) {
-            for (int j = 0; j < this.getidxKolom(); j++) {
-                for (int i = 0; i < this.getidxBaris(); i++) {
-                    this.Mat[i][j] = this.getElement(i, this.getidxKolom());
-                }
+        matriks temp = new matriks(this.getidxBaris(), this.getidxKolom()-1);
+        if (temp.getidxBaris() == temp.getidxKolom())
+         {
+             for (int i = 0; i < temp.getidxBaris(); i++)
+             {
+                 for (int j = 0; j < temp.getidxKolom(); j++)
+                 {
+                     temp.Mat[i][j] = MatIn.getElement(i, j);
+                 }
+            }
+            double[] D = new double[temp.getidxKolom()];
+            double[] solution = new double[temp.getidxKolom()];
+            double D_awal;
+            D_awal = determinantOfMatrix(temp.Mat, temp.getidxKolom());
+            if (D_awal != 0) {
+                for (int j = 0; j < temp.getidxKolom(); j++) {
+                    for (int i = 0; i < temp.getidxBaris(); i++) {
+                        temp.Mat[i][j] = MatIn.getElement(i, temp.getidxKolom());
+                    }
+                    D[j] = determinantOfMatrix(temp.Mat, temp.getidxKolom());
 
-                D[j] = determinantOfMatrix(this.Mat, this.getidxKolom());
-                solution[j] = D[j] / D_awal;
+                    solution[j] = D[j] / D_awal;
 
-                // manual
-                for (int k = 0; k < this.getidxBaris(); k++) {
-                    for (int l = 0; l < this.getidxBaris(); l++) {
-                        this.Mat[k][l] = this.getElement(k, l);
+                    // manual exchanging. Karena
+                    for (int k = 0; k < temp.getidxBaris(); k++) {
+                        for (int l = 0; l < temp.getidxBaris(); l++) {
+                            temp.Mat[k][l] = MatIn.getElement(k, l);
+                        }
                     }
                 }
-            }
 
-        }
-        for (int k = 0; k < this.getidxKolom(); k++) {
-            if (k != this.getidxKolom()) {
-                System.out.print("x" + k + " = " + solution[k] + ", ");
-            } else {
-                System.out.println("dan x" + k + " = " + solution[k]);
+            }
+            System.out.print("y = ");
+            for (int k = 0; k < temp.getidxKolom(); k++) {
+                if (k == 0) {
+                    System.out.print(solution[k] + " + ");
+                } 
+                else if ((k == 1) && (k != temp.getidxKolom()-1)) {
+                    System.out.print(solution[k] + "x" + " + ");
+                }
+                else if ((k == 1) && (k == temp.getidxKolom()-1)) {
+                    System.out.println(solution[k] + "x");
+                }
+                else if ((k > 1) && (k != temp.getidxKolom()-1)) {
+                    System.out.print(solution[k] + "x" + k + " + ");
+                }
+                else
+                {
+                    System.out.println(solution[k] + "x" + k);
+                }
             }
         }
+
     }
 
     public void invers(double[][] matriks1)
