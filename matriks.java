@@ -453,29 +453,37 @@ public class matriks {
         }
     }
 
-    public void invers(double[][] matriks1)
-    // I.S Masukan Matriks belum mengalami OBE (ELIMINASI GAUSS JORDAN)
-    {
-        double[][] matriks = new double[idxBaris][2 * (idxBaris)];
-        for (int i = 0; i < idxBaris; i++) {
-            for (int j = 0; j < idxBaris; j++) {
-                matriks[i][j] = matriks1[i][j];
+    public void invers ()
+    //I.S Masukan Matriks belum mengalami OBE (ELIMINASI GAUSS JORDAN)
+    { 
+        double temp;
+        double [][] matriks1;
+        matriks1=this.Mat;
+        matriks(idxBaris,2*idxBaris);
+        setidx(idxBaris,2*idxBaris);
+        for (int i=0;i<idxBaris;i++){
+            for (int j=0; j<idxBaris; j++){
+                this.Mat[i][j]=matriks1[i][j];
             }
-            for (int k = idxBaris; k < 2 * idxBaris; k++) {
-                if (k == idxBaris + i) {
-                    matriks[i][k] = 1;
-                } else {
-                    matriks[i][k] = 0;
+            for(int k=idxBaris; k<2*idxBaris;k++){
+                if (k==idxBaris+i){
+                    this.Mat[i][k]=1;
+                }
+                else{
+                    this.Mat[i][k]=0;
                 }
             }
         }
-        GaussElimination(matriks);
-        GaussJordanElimination(matriks);
-        for (int i = 0; i < idxBaris; i++) {
-            for (int j = 0; j < idxBaris; j++) {
-                matriks1[i][j] = matriks[i][j + idxBaris];
+        GaussElimination(this.Mat);
+        GaussJordanElimination(this.Mat);
+        TulisMatriks();
+        for (int i=0;i<idxBaris;i++){
+            for (int j=0;j<idxBaris;j++){
+                temp=this.Mat[i][j+idxBaris];
+                this.Mat[i][j]=temp;
             }
         }
+        setidx(idxBaris,idxBaris);
     }
 
     public double[][] KaliMatriks(double[][] matriks1, double[][] matriks2, int idxBrs1, int idxKol2) {
