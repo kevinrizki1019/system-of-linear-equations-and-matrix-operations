@@ -1,9 +1,8 @@
-package matriksDasar;
 
 import java.util.Scanner;
 import java.io.*;
 
-public class Menu  {
+public class menu  {
     matriks Matriks = new matriks();
     Scanner input = new Scanner(System.in);
 
@@ -18,7 +17,7 @@ public class Menu  {
         System.out.format("Masukkan Banyaknya Kolom: ");
         idxKol=input.nextInt();
         System.out.println();
-        Matriks.matriks(idxBar,idxKol);
+       matriks Matriks = new matriks(idxBar, idxKol);
         System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
         Matriks.BacaMatriks();
         System.out.println();
@@ -37,7 +36,7 @@ public class Menu  {
         System.out.format("Masukkan Banyaknya Kolom: ");
         idxKol=input.nextInt();
         System.out.println();
-        Matriks.matriks(idxBar,idxKol);
+       matriks Matriks = new matriks(idxBar, idxKol);
         System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
         Matriks.BacaMatriks();
         System.out.println();
@@ -73,7 +72,7 @@ public class Menu  {
                         System.out.println("Masukkan Tetap Salah, Silahkan input kembali!");
                     }
                     else{
-                        Matriks.matriks(idxBar,idxKol);
+                       matriks Matriks = new matriks(idxBar, idxKol);
                     }
                 }
             }
@@ -85,7 +84,7 @@ public class Menu  {
                         System.out.println("Masukkan Tetap Salah, Silahkan input kembali!");
                     }
                     else{
-                        Matriks.matriks(idxBar,idxKol);
+                       matriks Matriks = new matriks(idxBar, idxKol);
                     }
                 }
             }
@@ -112,7 +111,7 @@ public class Menu  {
                 }
                 augmented=Matriks.OnlyAugmented(matriks);
                 Matriks.invers(matriks);
-                Matriks.TulisSPLMatriksBalikan(matriks,augmented,idxBar,1);
+                Matriks.TulisSPLMatriksBalikan();
             }
             else if(opsi==2){
                 
@@ -151,7 +150,7 @@ public class Menu  {
                         System.out.println("Masukkan Tetap Salah, Silahkan input kembali!");
                     }
                     else{
-                        Matriks.matriks(idxBar,idxKol);
+                       matriks Matriks = new matriks(idxBar, idxKol);
                     }
                 }
             }
@@ -163,7 +162,7 @@ public class Menu  {
                         System.out.println("Masukkan Tetap Salah, Silahkan input kembali!");
                     }
                     else{
-                        Matriks.matriks(idxBar,idxKol);
+                       matriks Matriks = new matriks(idxBar, idxKol);
                     }
                 }
             }
@@ -173,7 +172,7 @@ public class Menu  {
         }
         if(check=true){
             System.out.println();
-            Matriks.matriks(idxBar,idxKol);
+           matriks Matriks = new matriks(idxBar, idxKol);
             System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
             Matriks.BacaMatriks();
             Matriks.setidxKolom(idxKol+1);
@@ -213,7 +212,7 @@ public class Menu  {
                         System.out.println("Masukkan Tetap Salah, Silahkan input kembali!");
                     }
                     else{
-                        Matriks.matriks(idxBar,idxKol);
+                       matriks Matriks = new matriks(idxBar, idxKol);
                     }
                 }
             }
@@ -225,7 +224,7 @@ public class Menu  {
                         System.out.println("Masukkan Tetap Salah, Silahkan input kembali!");
                     }
                     else{
-                        Matriks.matriks(idxBar,idxKol);
+                       matriks Matriks = new matriks(idxBar, idxKol);
                     }
                 }
             }
@@ -235,7 +234,7 @@ public class Menu  {
         }
         if(check=true){
             System.out.println();
-            Matriks.matriks(idxBar,idxKol);
+           matriks Matriks = new matriks(idxBar, idxKol);
             System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
             Matriks.BacaMatriks();
             Matriks.invers(Matriks.Mat);
@@ -246,15 +245,56 @@ public class Menu  {
     }
     
     public void MenuInversAdjoint (){
+        int idxBar,idxKol;
+        ResetLayar();
+        System.out.format("Mencari Matriks Inverse dengan metode Adjoint\n");
+        System.out.format("Akan dibuat Matriks Koefisien dengan ukuran N x N \n");
+        System.out.format("Masukkan N: ");
         
+        idxBar=input.nextInt();
+        idxKol = idxBar;
+
+       matriks Matriks = new matriks(idxBar, idxKol);
+        System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
+        Matriks.BacaMatriks();
+        System.out.println();
+        Matriks.getMatriksInvers();
+        Matriks.TulisMatriks();
+        System.out.println();
     }
     
     public void MenuMatriksKofaktor (){
+        int idxBar,idxKol;
+        ResetLayar();
+        System.out.format("Mencari Matriks Adjoint\n");
+        System.out.format("Akan dibuat Matriks Kofaktor dengan ukuran N x N \n");
+        System.out.format("Masukkan N: ");
         
+        idxBar=input.nextInt();
+        idxKol = idxBar;
+
+       matriks Matriks = new matriks(idxBar, idxKol);
+        System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
+        Matriks.BacaMatriks();
+        System.out.println();
+        Matriks.Mat = Matriks.getMatriksCofactor(Matriks.Mat, idxBar);
     }
     
     public void MenuAdjoin (){
+        int idxBar,idxKol;
+        ResetLayar();
+        System.out.format("Mencari Matriks Adjoint\n");
+        System.out.format("Akan dibuat Matriks Koefisien dengan ukuran N x N \n");
+        System.out.format("Masukkan N: ");
         
+        idxBar=input.nextInt();
+        idxKol = idxBar;
+
+        matriks Matriks = new matriks(idxBar, idxKol);
+        System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
+        Matriks.BacaMatriks();
+        System.out.println();
+        Matriks.Mat = Matriks.getAdjoin(Matriks.Mat, idxBar);
     }
     
     public void MenuInterpolasiPolinom (){

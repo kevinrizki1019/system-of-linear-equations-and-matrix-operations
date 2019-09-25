@@ -1,6 +1,5 @@
 import java.util.Scanner;
-
-public class MainMatriks {
+public class MainMatriks extends matriks {
     Scanner input = new Scanner(System.in);
     int opsi;
     menu jalankan = new menu();
