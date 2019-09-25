@@ -405,6 +405,7 @@ public class matriks {
     }
 
     public void Interpolasi() {
+        double x,y;
         for (int i = 0; i < N; i++) {
             x = input.nextDouble();
             y = input.nextDouble();
