@@ -5,6 +5,7 @@ public class MainMatriks {
     Menu jalankan = new Menu();
 
     public void MenuUtama() {
+        System.out.println();
         System.out.println("MENU");
         System.out.println("1. Sistem Persamaan Linier");
         System.out.println("2. Determinan");
