@@ -6,7 +6,7 @@ BASIC:
     Buat nama yang meaningful
     Tulis comment seperlunya untuk membantu
 */
-
+package matriksDasar;
 import java.io.*;
 import java.util.Scanner;
 
@@ -27,7 +27,7 @@ public class matriks {
          */
     }
 
-    public matriks(int i, int j) {
+    public void matriks(int i, int j) {
         /* Membentuk object matriks dengan nilai properties sesuai */
         this.Mat = new double[i][j];
         this.idxBaris = i;
