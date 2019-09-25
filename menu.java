@@ -160,24 +160,19 @@ public class menu  {
                         }
                     }
                     augmented=Matriks.OnlyAugmented(matriks);
-                    Matriks.invers(matriks);
+                    Matriks.invers();
                     Matriks.TulisSPLMatriksBalikan();
                 }
                 else if(opsi==2){
-                    
-                }
-                Matriks.TulisSPLMatriksBalikan();
-            }
-            else if(opsi==2){
-                double [][] matriks,augmented;
-                matriks=new double [idxBar][idxKol];
-                for (int i=0; i<idxBar; i++){
-                    for (int j=0; j<idxKol; j++){
-                        matriks[i][j]=Matriks.getElement(i,j);
+                    double [][] matriks,augmented;
+                    matriks=new double [idxBar][idxKol];
+                    for (int i=0; i<idxBar; i++){
+                        for (int j=0; j<idxKol; j++){
+                            matriks[i][j]=Matriks.getElement(i,j);
+                        }
                     }
+                    Matriks.TulisSPLMatriksBalikanCrammer();
                 }
-                Matriks.TulisSPLMatriksBalikanCrammer();
-            }
         } else {
             
         }
@@ -356,8 +351,7 @@ public class menu  {
            matriks Matriks = new matriks(idxBar, idxKol);
             System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
             Matriks.BacaMatriks();
-            Matriks.invers(Matriks.Mat);
-            ResetLayar();
+            Matriks.invers();
             System.out.println("Hasil Matriks Balikan dengan metode Operasi Baris Elementer: ");
             Matriks.TulisMatriks();
         }
