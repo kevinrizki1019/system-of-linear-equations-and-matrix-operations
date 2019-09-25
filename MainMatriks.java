@@ -23,19 +23,8 @@ public class MainMatriks {
         
         // double d = M.determinantOfMatrix(M.Mat,n);
         // System.out.println(d);
+            double [][] a = new double[n][n];
 
-        double[][] c = new double[n][n];
-        c= M.getMatriksCofactor(M.Mat,n);
-
-        double[][] AdjoinOfM = new double[n][n];
-        AdjoinOfM = M.getAdjoin(M.Mat,n);
-        for (int i=0; i<n; i++) {
-            for (int j=0; j<n; j++) {
-                System.out.print(AdjoinOfM[i][j] + " ");
-            }
-            System.out.println();
-        }
-        M.getSPLCrammer();
         M.TulisSPLMatriksBalikan();
         
     } 

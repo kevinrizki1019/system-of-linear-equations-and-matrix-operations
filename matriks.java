@@ -259,7 +259,8 @@ public class matriks {
 
         adjoin =  this.getMatriksCofactor(matIn,n);
         
-        return this.getTranspose(adjoin,n,n);
+        adjoin = this.getTranspose(adjoin,n,n);
+        return adjoin;
     }
     public void GaussElimination(double[][] matriks1) {
         double c=0;
@@ -742,59 +743,60 @@ public class matriks {
      }
      public void getMatriksInvers()
      {
-         getAdjoin(this.Mat, this.getidxBaris());
-         double D = determinantOfMatrix(this.Mat, this.getidxBaris());
-         for(int i = 0; i < this.getidxBaris(); i++)
-         {
-             for (int j = 0; j < this.getidxKolom(); j++)
-             {
-                this.Mat[i][j] = getElement(i, j) / D;
-             }
-         }
+        double D = determinantOfMatrix(this.Mat, this.getidxBaris()); 
+        this.Mat = getAdjoin(this.Mat, this.getidxBaris());
+        for(int i = 0; i < this.getidxBaris(); i++)
+        {
+            for (int j = 0; j < this.getidxKolom(); j++)
+            {
+               this.Mat[i][j] = getElement(i, j) / D;
+            }
+        }
      }
      public double[][] getWithoutAugmented()
      {
-         double[][] matriks_withoutAugmented = new double [this.getidxBaris()][this.getidxBaris()-1];
+        double[][] matriks_withoutAugmented = new double [this.getidxBaris()][this.getidxKolom()-1];
          
-         for(int i = 0; i < this.getidxBaris(); i++ )
-         {
-            
-         }
+        for(int i = 0; i < this.getidxBaris(); i++ )
+        {
+            for(int j = 0; j < this.getidxKolom()-1; j++)
+            {
+                matriks_withoutAugmented[i][j] = this.getElement(i, j);
+            }
+        }
+        return matriks_withoutAugmented;
      }
      public void TulisSPLMatriksBalikan ( )
      {
         int idxBarisInvers = this.idxBaris;
         int idxKolomInvers = this.idxKolom - 1;
         matriks matriks_invers = new matriks (idxBarisInvers, idxKolomInvers);
-        matriks matriks_onlyAugmented = new matriks (this.getidxBaris(), 1);
+        matriks matriks_onlyAugmented = new matriks (idxBarisInvers , 1);
         matriks matriks_withoutAugmented = new matriks (idxBarisInvers , idxKolomInvers);
-        for (int i = 0; i < idxBarisInvers; i++ )
-        {
-            for (int j = 0; j < idxKolomInvers; j++ )
-            {
-                matriks_withoutAugmented.Mat[i][j] = this.getElement(i, j);
-            }
-        }
-
+        matriks_withoutAugmented.Mat = this.getWithoutAugmented();
+        
+        matriks_onlyAugmented.Mat = OnlyAugmented(this.Mat);
         matriks_withoutAugmented.getMatriksInvers();
+        matriks_invers = matriks_withoutAugmented;
 
         matriks matriks_hasil = new matriks(idxBarisInvers,1);
-        matriks_hasil.Mat = KaliMatriks(matriks_invers.Mat, matriks_onlyAugmented.Mat,idxBarisInvers,1);
-         for (int i=0; i<idxBarisInvers; i++){
+        matriks_hasil.Mat = matriks_withoutAugmented.KaliMatriks(matriks_invers.Mat, matriks_onlyAugmented.Mat,idxBarisInvers,1);
+        for (int i=0; i<idxBarisInvers; i++){
              if(i!=idxBarisInvers-1){
                  System.out.format("x%d=%.2f,",i+1,matriks_hasil.Mat[i][0]);
              }
              else{
                  System.out.format("dan x%d=%.2f.",i+1,matriks_hasil.Mat[i][0]);
+                 System.out.println("");
              }
          }
      }
     
      
      public double [][] OnlyAugmented (double[][] matriks) {
-         double [][] matriks1= new double[idxBaris][1];
-         for (int i=0; i<idxBaris; i++){
-             matriks1[i][1]=matriks[i][idxKolom-1];
+         double [][] matriks1= new double[this.idxBaris][1];
+         for (int i=0; i<this.idxBaris; i++){
+             matriks1[i][0]=matriks[i][idxKolom-1];
          }
          return matriks1;
      }
