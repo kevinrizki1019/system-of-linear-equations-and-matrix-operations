@@ -1,8 +1,8 @@
-
+package matriksDasar;
 import java.util.Scanner;
 import java.io.*;
 
-public class menu  {
+public class Menu  {
     matriks Matriks = new matriks();
     int opsi;
     Scanner input = new Scanner(System.in);
@@ -26,7 +26,7 @@ public class menu  {
             System.out.format("Masukkan Banyaknya Kolom: ");
             idxKol=input.nextInt();
             System.out.println();
-            matriks Matriks = new matriks(idxBar, idxKol);
+            Matriks.matriks(idxBar, idxKol);
             System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
             Matriks.BacaMatriks();
             System.out.println();
@@ -65,7 +65,7 @@ public class menu  {
             System.out.format("Masukkan Banyaknya Kolom: ");
             idxKol=input.nextInt();
             System.out.println();
-            matriks Matriks = new matriks(idxBar, idxKol);
+            Matriks.matriks(idxBar, idxKol);
             System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
             Matriks.BacaMatriks();
             System.out.println();
@@ -123,7 +123,7 @@ public class menu  {
                             System.out.println("Masukkan Tetap Salah, Silahkan input kembali!");
                         }
                         else{
-                           matriks Matriks = new matriks(idxBar, idxKol);
+                           Matriks.matriks(idxBar, idxKol);
                         }
                     }
                 }
@@ -135,7 +135,7 @@ public class menu  {
                             System.out.println("Masukkan Tetap Salah, Silahkan input kembali!");
                         }
                         else{
-                           matriks Matriks = new matriks(idxBar, idxKol);
+                           Matriks.matriks(idxBar, idxKol);
                         }
                     }
                 }
@@ -191,7 +191,7 @@ public class menu  {
         System.out.format("Masukkan Banyaknya Kolom: ");
         idxKol=input.nextInt();
         System.out.println();
-       matriks Matriks = new matriks(idxBar, idxKol);
+        Matriks.matriks(idxBar, idxKol);
         System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
         Matriks.BacaMatriks();
         System.out.println();
@@ -250,7 +250,6 @@ public class menu  {
             Matriks.matriks(idxBar,idxKol);
             System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
             Matriks.BacaMatriks();
-            Matriks.setidxKolom(idxKol);
             Matriks.GaussElimination(Matriks.Mat);
             System.out.format("Dengan Menggunakan metode Operasi Baris Elementer maka didapatkan nilai determinan sebesar %.2f.\n",Matriks.GetDeterminanOBE(Matriks.Mat));            
         }
@@ -278,7 +277,7 @@ public class menu  {
             idxKol=input.nextInt();
 
             System.out.println();
-            matriks Matriks = new matriks(idxBar, idxKol);
+            Matriks.matriks(idxBar, idxKol);
             System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
             Matriks.BacaMatriks();
             System.out.format("Dengan Menggunakan metode Ekspansi Kofaktor maka didapatkan nilai determinan sebesar %.2f",Matriks.determinantOfMatrix(Matriks.Mat, idxBar));            
@@ -328,7 +327,7 @@ public class menu  {
                         System.out.println("Masukkan Tetap Salah, Silahkan input kembali!");
                     }
                     else{
-                       matriks Matriks = new matriks(idxBar, idxKol);
+                       Matriks.matriks(idxBar, idxKol);
                     }
                 }
             }
@@ -340,7 +339,7 @@ public class menu  {
                         System.out.println("Masukkan Tetap Salah, Silahkan input kembali!");
                     }
                     else{
-                       matriks Matriks = new matriks(idxBar, idxKol);
+                       Matriks.matriks(idxBar, idxKol);
                     }
                 }
             }
@@ -350,7 +349,7 @@ public class menu  {
         }
         if(check=true){
             System.out.println();
-           matriks Matriks = new matriks(idxBar, idxKol);
+            Matriks.matriks(idxBar, idxKol);
             System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
             Matriks.BacaMatriks();
             Matriks.invers();
@@ -376,7 +375,7 @@ public class menu  {
         idxBar=input.nextInt();
         idxKol = idxBar;
 
-       matriks Matriks = new matriks(idxBar, idxKol);
+        Matriks.matriks(idxBar, idxKol);
         System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
         Matriks.BacaMatriks();
         System.out.println();
@@ -403,7 +402,7 @@ public class menu  {
         idxBar=input.nextInt();
         idxKol = idxBar;
 
-       matriks Matriks = new matriks(idxBar, idxKol);
+        Matriks.matriks(idxBar, idxKol);
         System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
         Matriks.BacaMatriks();
         System.out.println();
@@ -429,7 +428,7 @@ public class menu  {
         idxBar=input.nextInt();
         idxKol = idxBar;
 
-        matriks Matriks = new matriks(idxBar, idxKol);
+        Matriks.matriks(idxBar, idxKol);
         System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
         Matriks.BacaMatriks();
         System.out.println();
@@ -444,7 +443,7 @@ public class menu  {
         System.out.format("Akan dibuat persamaan polinom yang melewati titik-titik uji \n");
         System.out.format("Masukkan Banyaknya titik uji: ");
         int N = input.nextInt();
-        matriks Matriks = new matriks(N, N + 1);
+        Matriks.matriks(N, N+1);
         Matriks.Interpolasi();
     }
     
