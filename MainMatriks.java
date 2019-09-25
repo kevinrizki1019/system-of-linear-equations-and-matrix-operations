@@ -17,20 +17,27 @@ public class MainMatriks {
         opsi = input.nextInt();
         if (opsi == 1) {
             Menu1();
+            MenuUtama();
         } else if (opsi == 2) {
             Menu2();
+            MenuUtama();
         } else if (opsi == 3) {
             Menu3();
+            MenuUtama();
         } else if (opsi == 4) {
             Menu4();
+            MenuUtama();
         } else if (opsi == 5) {
             Menu5();
+            MenuUtama();
         } else if (opsi == 6) {
             Menu6();
+            MenuUtama();
         } else if (opsi == 7) {
             Menu7();
+            MenuUtama();
         } else {
-
+            MenuUtama();
         }
     }
     public void Menu1() {

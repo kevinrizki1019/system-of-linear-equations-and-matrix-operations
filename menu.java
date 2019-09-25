@@ -32,17 +32,20 @@ public class menu  {
             System.out.println();
             Matriks.GaussElimination(Matriks.Mat);
             Matriks.TulisGauss(Matriks.Mat);
+            System.out.println();
         } else {
             matriks Matriks = new matriks();
             Scanner inputFile = new Scanner(System.in);
             String fileName;
             
             // Prosedur pembacaan nama file dan membaca isi matriks dalam file
+            System.out.print("Masukkan nama file: ");
             fileName = inputFile.nextLine();
             Matriks.BacaMatriksFromFile(fileName);
 
             Matriks.GaussElimination(Matriks.Mat);
             Matriks.TulisGauss(Matriks.Mat);
+            System.out.println();
         }
     }
     
@@ -77,6 +80,7 @@ public class menu  {
             String fileName;
             
             // Prosedur pembacaan nama file dan membaca isi matriks dalam file
+            System.out.print("Masukkan nama file: ");
             fileName = inputFile.nextLine();
             Matriks.BacaMatriksFromFile(fileName);
 
@@ -178,8 +182,7 @@ public class menu  {
                 }
                 Matriks.TulisSPLMatriksBalikanCrammer();
             }
-        } else {
-            
+        } else { // Masukkan dari file
         }
     }
     
@@ -329,54 +332,67 @@ public class menu  {
         System.out.print("Pilihan Menu: ");
         opsi = input.nextInt();
         
-        System.out.format("Masukkan Banyaknya Baris: ");
-        idxBar=input.nextInt();
-        System.out.println();
-        System.out.format("Masukkan Banyaknya Kolom: ");
-        idxKol=input.nextInt();
-        if (idxKol!=idxBar){
-            System.out.format("Matriks Tidak Bisa Diolah! Silahkan Pilih Opsi Selanjutnya\n1. Input Kembali Baris dan Kolom.\n2. Input Kembali Kolom\n3. Keluar.\n");
-            System.out.format("Silahkan Input Opsi yang dipilih (input nomornya saja): ");
-            opsi=input.nextInt();
-            if (opsi==1){
-                while (idxKol!=idxBar){
-                    System.out.format("Masukkan Banyaknya Baris: ");
-                    idxBar=input.nextInt();
-                    System.out.println();
-                    System.out.format("Masukkan Banyaknya Kolom: ");
-                    idxKol=input.nextInt();
-                    if(idxKol!=idxBar){
-                        System.out.println("Masukkan Tetap Salah, Silahkan input kembali!");
-                    }
-                    else{
-                       matriks Matriks = new matriks(idxBar, idxKol);
-                    }
-                }
-            }
-            else if (opsi==2){
-                while (idxKol!=idxBar){
-                    System.out.format("Masukkan Banyaknya Kolom: ");
-                    idxKol=input.nextInt();
-                    if(idxKol!=idxBar){
-                        System.out.println("Masukkan Tetap Salah, Silahkan input kembali!");
-                    }
-                    else{
-                       matriks Matriks = new matriks(idxBar, idxKol);
-                    }
-                }
-            }
-            else{
-                check=false;
-            }
-        }
-        if(check=true){
+        if (opsi == 1) {
+            System.out.format("Masukkan Banyaknya Baris: ");
+            idxBar=input.nextInt();
             System.out.println();
-           matriks Matriks = new matriks(idxBar, idxKol);
-            System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
-            Matriks.BacaMatriks();
+            System.out.format("Masukkan Banyaknya Kolom: ");
+            idxKol=input.nextInt();
+            if (idxKol!=idxBar){
+                System.out.format("Matriks Tidak Bisa Diolah! Silahkan Pilih Opsi Selanjutnya\n1. Input Kembali Baris dan Kolom.\n2. Input Kembali Kolom\n3. Keluar.\n");
+                System.out.format("Silahkan Input Opsi yang dipilih (input nomornya saja): ");
+                opsi=input.nextInt();
+                if (opsi==1){
+                    while (idxKol!=idxBar){
+                        System.out.format("Masukkan Banyaknya Baris: ");
+                        idxBar=input.nextInt();
+                        System.out.println();
+                        System.out.format("Masukkan Banyaknya Kolom: ");
+                        idxKol=input.nextInt();
+                        if(idxKol!=idxBar){
+                            System.out.println("Masukkan Tetap Salah, Silahkan input kembali!");
+                        }
+                        else{
+                        matriks Matriks = new matriks(idxBar, idxKol);
+                        }
+                    }
+                }
+                else if (opsi==2){
+                    while (idxKol!=idxBar){
+                        System.out.format("Masukkan Banyaknya Kolom: ");
+                        idxKol=input.nextInt();
+                        if(idxKol!=idxBar){
+                            System.out.println("Masukkan Tetap Salah, Silahkan input kembali!");
+                        }
+                        else{
+                        matriks Matriks = new matriks(idxBar, idxKol);
+                        }
+                    }
+                }
+                else{
+                    check=false;
+                }
+            }
+            if(check=true){
+                System.out.println();
+                matriks Matriks = new matriks(idxBar, idxKol);
+                System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
+                Matriks.BacaMatriks();
+                Matriks.invers(Matriks.Mat);
+                ResetLayar();
+                System.out.println("Hasil Matriks Balikan dengan metode Operasi Baris Elementer: ");
+                Matriks.TulisMatriks();
+            }
+        } else {
+            matriks Matriks = new matriks();
+            Scanner inputFile = new Scanner(System.in);
+            String fileName;
+            
+            // Prosedur pembacaan nama file dan membaca isi matriks dalam file
+            fileName = inputFile.nextLine();
+            Matriks.BacaMatriksFromFile(fileName);
+            System.out.format("Hasil Matriks Balikan dengan metode Operasi Baris Elementer:");
             Matriks.invers(Matriks.Mat);
-            ResetLayar();
-            System.out.println("Hasil Matriks Balikan dengan metode Operasi Baris Elementer: ");
             Matriks.TulisMatriks();
         }
     }
@@ -393,21 +409,36 @@ public class menu  {
         System.out.print("Pilihan Menu: ");
         opsi = input.nextInt();
         
-        System.out.format("Masukkan N: ");
-        
-        idxBar=input.nextInt();
-        idxKol = idxBar;
+        if (opsi == 1) {
+            System.out.format("Masukkan N: ");
+            
+            idxBar=input.nextInt();
+            idxKol = idxBar;
 
-       matriks Matriks = new matriks(idxBar, idxKol);
-        System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
-        Matriks.BacaMatriks();
-        System.out.println();
-        Matriks.getMatriksInvers();
-        System.out.format("Matriks Inversenya adalah: \n");
-        Matriks.TulisMatriks();
-        System.out.println();
+            matriks Matriks = new matriks(idxBar, idxKol);
+            System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
+            Matriks.BacaMatriks();
+            System.out.println();
+            Matriks.getMatriksInvers();
+            System.out.format("Matriks Inversenya adalah: \n");
+            Matriks.TulisMatriks();
+            System.out.println();
+
+        } else {
+            matriks Matriks = new matriks();
+            Scanner inputFile = new Scanner(System.in);
+            String fileName;
+            
+            // Prosedur pembacaan nama file dan membaca isi matriks dalam file
+            fileName = inputFile.nextLine();
+            Matriks.BacaMatriksFromFile(fileName);
+            Matriks.getMatriksInvers();
+            System.out.format("Matriks Inversenya adalah: \n");
+            Matriks.TulisMatriks();
+            System.out.println();
+        }
     }
-    
+
     public void MenuMatriksKofaktor (){
         int idxBar,idxKol;
         ResetLayar();
