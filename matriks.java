@@ -405,47 +405,43 @@ public class matriks {
     }
 
     public void Interpolasi() {
-        int N = input.nextInt();
-        double x, y;
-
-        matriks temp = new matriks(N, N + 1);
         for (int i = 0; i < N; i++) {
             x = input.nextDouble();
             y = input.nextDouble();
             for (int j = 0; j < N + 1; j++) {
                 if (j != N) {
-                    temp.Mat[i][j] = Math.pow(x, j);
+                    this.Mat[i][j] = Math.pow(x, j);
                 } else {
-                    temp.Mat[i][j] = y;
+                    this.Mat[i][j] = y;
                 }
                 System.out.println(j);
             }
             System.out.println(i);
         }
-        double[] D = new double[temp.getidxKolom()];
-        double[] solution = new double[temp.getidxKolom()];
+        double[] D = new double[this.getidxKolom()];
+        double[] solution = new double[this.getidxKolom()];
         double D_awal;
-        D_awal = determinantOfMatrix(temp.Mat, temp.getidxKolom());
+        D_awal = determinantOfMatrix(this.Mat, this.getidxKolom());
         if (D_awal != 0) {
-            for (int j = 0; j < temp.getidxKolom(); j++) {
-                for (int i = 0; i < temp.getidxBaris(); i++) {
-                    temp.Mat[i][j] = this.getElement(i, temp.getidxKolom());
+            for (int j = 0; j < this.getidxKolom(); j++) {
+                for (int i = 0; i < this.getidxBaris(); i++) {
+                    this.Mat[i][j] = this.getElement(i, this.getidxKolom());
                 }
 
-                D[j] = determinantOfMatrix(temp.Mat, temp.getidxKolom());
+                D[j] = determinantOfMatrix(this.Mat, this.getidxKolom());
                 solution[j] = D[j] / D_awal;
 
                 // manual
-                for (int k = 0; k < temp.getidxBaris(); k++) {
-                    for (int l = 0; l < temp.getidxBaris(); l++) {
-                        temp.Mat[k][l] = this.getElement(k, l);
+                for (int k = 0; k < this.getidxBaris(); k++) {
+                    for (int l = 0; l < this.getidxBaris(); l++) {
+                        this.Mat[k][l] = this.getElement(k, l);
                     }
                 }
             }
 
         }
-        for (int k = 0; k < temp.getidxKolom(); k++) {
-            if (k != temp.getidxKolom()) {
+        for (int k = 0; k < this.getidxKolom(); k++) {
+            if (k != this.getidxKolom()) {
                 System.out.print("x" + k + " = " + solution[k] + ", ");
             } else {
                 System.out.println("dan x" + k + " = " + solution[k]);

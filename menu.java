@@ -317,7 +317,13 @@ public class menu  {
     }
     
     public void MenuInterpolasiPolinom (){
-        
+        ResetLayar();
+        System.out.format("Interpolasi Polinom\n");
+        System.out.format("Akan dibuat persamaan polinom yang melewati titik-titik uji \n");
+        System.out.format("Masukkan Banyaknya titik uji: ");
+        int N = input.nextInt();
+        matriks temp = new matriks(N, N + 1);
+        temp.Interpolasi();
     }
     
     public void ResetLayar (){
