@@ -81,6 +81,7 @@ public class menu  {
             Matriks.BacaMatriksFromFile(fileName);
 
             System.out.println();
+            Matriks.GaussElimination(Matriks.Mat);
             Matriks.GaussJordanElimination(Matriks.Mat);
             Matriks.TulisSPLGaussJordan(Matriks.Mat);
         }
