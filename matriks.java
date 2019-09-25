@@ -6,7 +6,7 @@ BASIC:
     Buat nama yang meaningful
     Tulis comment seperlunya untuk membantu
 */
-
+package matriksDasar;
 import java.io.*;
 import java.util.Scanner;
 
