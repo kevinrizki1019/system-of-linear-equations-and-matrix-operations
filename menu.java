@@ -1,14 +1,21 @@
 import java.util.Scanner;
 import java.io.*;
 
-public class Menu {
-    matriks Matriks = new matriks();
+public class menu {
+
     Scanner input = new Scanner(System.in);
+
+    public void ResetLayar (){
+        // Ngebuat layar jadi bersih
+        for (int i=1 ; i<50; i++){
+            System.out.println();
+        }
+    }
 
     public void MenuSPLEliminasiGauss(){
         int idxBar,idxKol;
         ResetLayar();
-        Matriks.matriks();
+        matriks Matriks = new matriks();
         System.out.format("Metode Eliminasi Gauss\n");
         System.out.format("Akan dibuat Matriks Augmented dengan ukuran BarisxKolom \n");
         System.out.format("Masukkan Banyaknya Baris: ");
@@ -17,7 +24,7 @@ public class Menu {
         System.out.format("Masukkan Banyaknya Kolom: ");
         idxKol=input.nextInt();
         System.out.println();
-        Matriks.matriks(idxBar,idxKol);
+        Matriks.setidx(idxBar,idxKol);
         System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
         Matriks.BacaMatriks();
         ResetLayar();
@@ -29,7 +36,7 @@ public class Menu {
     public void MenuSPLEliminasiGaussJordan(){
         int idxBar,idxKol;
         ResetLayar();
-        Matriks.matriks();
+        matriks Matriks = new matriks();
         System.out.format("Metode Eliminasi Gauss Jordan\n");
         System.out.format("Akan dibuat Matriks Augmented dengan ukuran BarisxKolom \n");
         System.out.format("Masukkan Banyaknya Baris: ");
@@ -38,7 +45,7 @@ public class Menu {
         System.out.format("Masukkan Banyaknya Kolom: ");
         idxKol=input.nextInt();
         System.out.println();
-        Matriks.matriks(idxBar,idxKol);
+        Matriks.setidx(idxBar,idxKol);
         System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
         Matriks.BacaMatriks();
         ResetLayar();
@@ -51,7 +58,7 @@ public class Menu {
         int idxBar,idxKol,opsi;
         boolean check=true;
         ResetLayar();
-        Matriks.matriks();
+        matriks Matriks = new matriks();
         System.out.format("Metode Matriks Balikan\n");
         System.out.format("Akan dibuat Matriks Augmented dengan ukuran BarisxKolom \n");
         System.out.format("Masukkan Kolom harus berukuran Baris+1\n");
@@ -75,7 +82,7 @@ public class Menu {
                         System.out.println("Masukkan Tetap Salah, Silahkan input kembali!");
                     }
                     else{
-                        Matriks.matriks(idxBar,idxKol);
+                        Matriks.setidx(idxBar,idxKol);
                     }
                 }
             }
@@ -87,7 +94,7 @@ public class Menu {
                         System.out.println("Masukkan Tetap Salah, Silahkan input kembali!");
                     }
                     else{
-                        Matriks.matriks(idxBar,idxKol);
+                        Matriks.setidx(idxBar,idxKol);
                         Matriks.TulisSPLMatriksBalikan();
                     }
                 }
@@ -115,7 +122,7 @@ public class Menu {
                 }
                 augmented=Matriks.OnlyAugmented(matriks);
                 Matriks.invers(matriks);
-                TulisSPLMatriksBalikan(matriks,augmented,Matriks.idxBaris,1);
+                Matriks.TulisSPLMatriksBalikan(); //matriks,augmented,Matriks.getidxBaris(),1
             }
             else if(opsi==2){
                 
@@ -132,7 +139,7 @@ public class Menu {
         int idxBar,idxKol,opsi;
         boolean check=true;
         ResetLayar();
-        Matriks.matriks();
+        matriks Matriks = new matriks();
         System.out.format("Metode Determinan dengan Operasi Baris Elementer\n");
         System.out.format("Akan dibuat Matriks dengan ukuran Baris x Kolom \n");
         System.out.format("Matriks harus dalam bentuk Bujur Sangkar!\n");
@@ -156,7 +163,7 @@ public class Menu {
                         System.out.println("Masukkan Tetap Salah, Silahkan input kembali!");
                     }
                     else{
-                        Matriks.matriks(idxBar,idxKol);
+                        Matriks.setidx(idxBar,idxKol);
                     }
                 }
             }
@@ -168,7 +175,7 @@ public class Menu {
                         System.out.println("Masukkan Tetap Salah, Silahkan input kembali!");
                     }
                     else{
-                        Matriks.matriks(idxBar,idxKol);
+                        Matriks.setidx(idxBar,idxKol);
                     }
                 }
             }
@@ -179,7 +186,7 @@ public class Menu {
         }
         if(check=true){
             System.out.println();
-            Matriks.matriks(idxBar,idxKol);
+            Matriks.setidx(idxBar,idxKol);
             System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
             Matriks.BacaMatriks();
             Matriks.setidxKolom(idxKol+1);
@@ -198,7 +205,7 @@ public class Menu {
         int idxBar,idxKol,opsi;
         boolean check=true;
         ResetLayar();
-        Matriks.matriks();
+        matriks Matriks = new matriks();
         System.out.format("Metode Invers/Matriks Balikan dengan Operasi Baris Elementer\n");
         System.out.format("Akan dibuat Matriks dengan ukuran Baris x Kolom \n");
         System.out.format("Matriks harus dalam bentuk Bujur Sangkar!\n");
@@ -222,7 +229,7 @@ public class Menu {
                         System.out.println("Masukkan Tetap Salah, Silahkan input kembali!");
                     }
                     else{
-                        Matriks.matriks(idxBar,idxKol);
+                        Matriks.setidx(idxBar,idxKol);
                     }
                 }
             }
@@ -234,7 +241,7 @@ public class Menu {
                         System.out.println("Masukkan Tetap Salah, Silahkan input kembali!");
                     }
                     else{
-                        Matriks.matriks(idxBar,idxKol);
+                        Matriks.setidx(idxBar,idxKol);
                     }
                 }
             }
@@ -245,10 +252,10 @@ public class Menu {
         }
         if(check=true){
             System.out.println();
-            Matriks.matriks(idxBar,idxKol);
+            Matriks.setidx(idxBar,idxKol);
             System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
             Matriks.BacaMatriks();
-            Matriks.Invers(Matriks.Mat);
+            Matriks.invers(Matriks.Mat);
             ResetLayar();
             System.out.println("Hasil Matriks Balikan dengan metode Operasi Baris Elementer: ");
             Matriks.TulisMatriks();
@@ -270,13 +277,5 @@ public class Menu {
     
     public void MenuInterpolasiPolinom (){
         
-    }
-    
-    public void ResetLayar (){
-        for (int i=1 ; i<50; i++){
-            System.out.println();
-        }
-    }
-        
-    
+    }    
 }

@@ -1,42 +1,48 @@
 import java.util.Scanner;
 
 public class MainMatriks {
-    public static void main(String[] args) {
-        int n,m;
-        Scanner input = new Scanner(System.in);
-        
-        n = input.nextInt();
-        m = input.nextInt();
-    
-        matriks M = new matriks(n,m);
-        M.BacaMatriks();
+    Scanner input = new Scanner(System.in);
+    int opsi;
+    menu jalankan = new menu();
 
-        // double[][] c = new double[n][n];
-        // c= M.getMatriksCofactor(n);
-
-        // for (int i=0; i<n; i++) {
-        //     for (int j=0; j<n; j++) {
-        //         System.out.print(c[i][j] + " ");
-        //     }
-        //     System.out.println();
-        // }
-        
-        // double d = M.determinantOfMatrix(M.Mat,n);
-        // System.out.println(d);
-
-        double[][] c = new double[n][n];
-        c= M.getMatriksCofactor(M.Mat,n);
-
-        double[][] AdjoinOfM = new double[n][n];
-        AdjoinOfM = M.getAdjoin(M.Mat,n);
-        for (int i=0; i<n; i++) {
-            for (int j=0; j<n; j++) {
-                System.out.print(AdjoinOfM[i][j] + " ");
-            }
-            System.out.println();
+    public void Menu1() {
+        System.out.println("1. Metode elimiasi Gauss");
+        System.out.println("2. Metode eliminasi Gauss-Jordan");
+        System.out.println("3. Metode matriks balikan");
+        System.out.println("4. Metode Cramer");
+        opsi = input.nextInt();
+        if (opsi == 1) {
+            jalankan.MenuSPLEliminasiGauss();
         }
-        M.getSPLCrammer();
-        M.TulisSPLMatriksBalikan();
+    }
+    public void Menu2() {
+
+    }
+    public void MenuUtama() {
+        System.out.println("MENU");
+        opsi = input.nextInt();
+        if (opsi == 1) {
+            Menu1();
+        } else if (opsi == 2) {
+
+        } else if (opsi == 3) {
+
+        } else if (opsi == 4) {
+
+        } else if (opsi == 5) {
+                
+        } else if (opsi == 6) {
+
+        } else if (opsi == 7) {
+
+        } else {
+
+        }
         
-    } 
+    }
+    
+    public static void main(String[] args) {
+        MainMatriks start = new MainMatriks();
+        start.MenuUtama();
+    }
 }

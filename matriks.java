@@ -763,13 +763,13 @@ public class matriks {
         }
     }
 
-    public double[][] getWithoutAugmented() {
-        double[][] matriks_withoutAugmented = new double[this.getidxBaris()][this.getidxBaris() - 1];
+    // public double[][] getWithoutAugmented() {
+    //     double[][] matriks_withoutAugmented = new double[this.getidxBaris()][this.getidxBaris() - 1];
 
-        for (int i = 0; i < this.getidxBaris(); i++) {
+    //     for (int i = 0; i < this.getidxBaris(); i++) {
 
-        }
-    }
+    //     }
+    // }
 
     public void TulisSPLMatriksBalikan() {
         int idxBarisInvers = this.idxBaris;
