@@ -201,79 +201,61 @@ public class menu  {
         Matriks.TulisSPLCrammer();
     }
     
-    public void MenuDeterminanOBE (){
+   public void MenuDeterminanOBE (){
         int idxBar,idxKol,opsi;
         boolean check=true;
         ResetLayar();
         System.out.format("Metode Determinan dengan Operasi Baris Elementer\n");
         System.out.format("Akan dibuat Matriks dengan ukuran Baris x Kolom \n");
         System.out.format("Matriks harus dalam bentuk Bujur Sangkar!\n");
-        
-        System.out.println("Pilih metode masukkan data matriks:");
-        System.out.println("1. Keyboard");
-        System.out.println("2. File Eksternal");
-        System.out.print("Pilihan Menu: ");
-        opsi = input.nextInt();
-        
-        if (opsi == 1) {
-            System.out.format("Masukkan Banyaknya Baris: ");
-            idxBar=input.nextInt();
+        System.out.format("Masukkan Banyaknya Baris: ");
+        idxBar=input.nextInt();
+        System.out.println();
+        System.out.format("Masukkan Banyaknya Kolom: ");
+        idxKol=input.nextInt();
+        if (idxKol!=idxBar){
+            System.out.format("Matriks Tidak Bisa Diolah! Silahkan Pilih Opsi Selanjutnya\n1. Input Kembali Baris dan Kolom.\n2. Input Kembali Kolom\n3. Keluar.\n");
+            System.out.format("Silahkan Input Opsi yang dipilih (input nomornya saja): ");
+            opsi=input.nextInt();
+            if (opsi==1){
+                while (idxKol!=idxBar){
+                    System.out.format("Masukkan Banyaknya Baris: ");
+                    idxBar=input.nextInt();
+                    System.out.println();
+                    System.out.format("Masukkan Banyaknya Kolom: ");
+                    idxKol=input.nextInt();
+                    if(idxKol!=idxBar){
+                        System.out.println("Masukkan Tetap Salah, Silahkan input kembali!");
+                    }
+                    else{
+                        Matriks.matriks(idxBar,idxKol);
+                    }
+                }
+            }
+            else if (opsi==2){
+                while (idxKol!=idxBar){
+                    System.out.format("Masukkan Banyaknya Kolom: ");
+                    idxKol=input.nextInt();
+                    if(idxKol!=idxBar){
+                        System.out.println("Masukkan Tetap Salah, Silahkan input kembali!");
+                    }
+                    else{
+                        Matriks.matriks(idxBar,idxKol);
+                    }
+                }
+            }
+            else{
+                check=false;
+            }
+        }
+        if(check=true){
             System.out.println();
-            System.out.format("Masukkan Banyaknya Kolom: ");
-            idxKol=input.nextInt();
-            if (idxKol!=idxBar){
-                System.out.format("Matriks Tidak Bisa Diolah! Silahkan Pilih Opsi Selanjutnya\n1. Input Kembali Baris dan Kolom.\n2. Input Kembali Kolom\n3. Keluar.\n");
-                System.out.format("Silahkan Input Opsi yang dipilih (input nomornya saja): ");
-                opsi=input.nextInt();
-                if (opsi==1){
-                    while (idxKol!=idxBar){
-                        System.out.format("Masukkan Banyaknya Baris: ");
-                        idxBar=input.nextInt();
-                        System.out.println();
-                        System.out.format("Masukkan Banyaknya Kolom: ");
-                        idxKol=input.nextInt();
-                        if(idxKol!=idxBar){
-                            System.out.println("Masukkan Tetap Salah, Silahkan input kembali!");
-                        }
-                        else{
-                        matriks Matriks = new matriks(idxBar, idxKol);
-                        }
-                    }
-                }
-                else if (opsi==2){
-                    while (idxKol!=idxBar){
-                        System.out.format("Masukkan Banyaknya Kolom: ");
-                        idxKol=input.nextInt();
-                        if(idxKol!=idxBar){
-                            System.out.println("Masukkan Tetap Salah, Silahkan input kembali!");
-                        }
-                        else{
-                        matriks Matriks = new matriks(idxBar, idxKol);
-                        }
-                    }
-                }
-                else{
-                    check=false;
-                }
-            }
-            if(check=true){
-                System.out.println();
-                matriks Matriks = new matriks(idxBar, idxKol);
-                System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
-                Matriks.BacaMatriks();
-                Matriks.GaussElimination(Matriks.Mat);
-                System.out.format("Dengan Menggunakan metode Operasi Baris Elementer maka didapatkan nilai determinan sebesar %.2f.\n",Matriks.GetDeterminanOBE(Matriks.Mat));         
-            }
-        } else {
-            matriks Matriks = new matriks();
-            Scanner inputFile = new Scanner(System.in);
-            String fileName;
-            
-            // Prosedur pembacaan nama file dan membaca isi matriks dalam file
-            fileName = inputFile.nextLine();
-            Matriks.BacaMatriksFromFile(fileName);
+            Matriks.matriks(idxBar,idxKol);
+            System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
+            Matriks.BacaMatriks();
+            Matriks.setidxKolom(idxKol);
             Matriks.GaussElimination(Matriks.Mat);
-            System.out.format("Dengan Menggunakan metode Operasi Baris Elmentermaka didapatkan nilai determinan sebesar %.2f",Matriks.GetDeterminanOBE(Matriks.Mat)); 
+            System.out.format("Dengan Menggunakan metode Operasi Baris Elementer maka didapatkan nilai determinan sebesar %.2f.\n",Matriks.GetDeterminanOBE(Matriks.Mat));            
         }
     }
     
