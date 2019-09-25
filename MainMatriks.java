@@ -1,6 +1,6 @@
 import java.util.Scanner;
 public class MainMatriks extends matriks {
-    Scanner input = new Scanner(System.in);
+    static Scanner input = new Scanner(System.in);
     int opsi;
     menu jalankan = new menu();
 
@@ -13,6 +13,7 @@ public class MainMatriks extends matriks {
         System.out.println("5. Adjoin");
         System.out.println("6. Interpolasi Polinom");
         System.out.println("7. Keluar");
+        System.out.print("Pilihan Menu: ");
         opsi = input.nextInt();
         if (opsi == 1) {
             Menu1();
@@ -38,6 +39,7 @@ public class MainMatriks extends matriks {
         System.out.println("2. Metode eliminasi Gauss-Jordan");
         System.out.println("3. Metode matriks balikan");
         System.out.println("4. Metode Cramer");
+        System.out.print("Pilihan Menu: ");
         opsi = input.nextInt();
         if (opsi == 1) {
             jalankan.MenuSPLEliminasiGauss();
@@ -56,6 +58,7 @@ public class MainMatriks extends matriks {
         System.out.println("DETERMINAN");
         System.out.println("1. Operasi Baris Elementer");
         System.out.println("2. Ekspansi Kofaktor");
+        System.out.print("Pilihan Menu: ");
         opsi = input.nextInt();
         if (opsi == 1) {
             jalankan.MenuDeterminanOBE();
@@ -67,6 +70,7 @@ public class MainMatriks extends matriks {
         System.out.println("MATRIKS BALIKAN");
         System.out.println("1. Operasi Baris Elementer");
         System.out.println("2. Adjoint");
+        System.out.print("Pilihan Menu: ");
         opsi = input.nextInt();
         if (opsi == 1) {
             jalankan.MenuInversOBE();
@@ -85,6 +89,7 @@ public class MainMatriks extends matriks {
     }
     public void Menu7() {
         System.out.println("Anda yakin ingin keluar?");
+        System.out.print("Pilihan Menu: ");
         opsi = input.nextInt();
         if (opsi == 0) {
             System.out.println("Kembali ke Menu Utama");

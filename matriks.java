@@ -14,7 +14,7 @@ public class matriks {
     Scanner input = new Scanner(System.in);
 
     /*** PROPERTIES ***/
-    public double[][] Mat;
+    public double[][] Mat = new double[10][10];
     private int idxBaris = 0; /* banyaknya ukuran baris yg terdefinisi */
     private int idxKolom = 0; /* banyaknya ukuran kolom yg terdefinisi */
     private double determinan = 1;
