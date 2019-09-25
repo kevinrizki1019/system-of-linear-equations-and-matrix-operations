@@ -1,8 +1,7 @@
-package matriksDasar;
 import java.util.Scanner;
 import java.io.*;
 
-public class Menu  {
+public class menu  {
     matriks Matriks = new matriks();
     int opsi;
     Scanner input = new Scanner(System.in);
@@ -11,7 +10,7 @@ public class Menu  {
         int idxBar,idxKol;
         ResetLayar();
         System.out.format("Metode Eliminasi Gauss\n");
-        System.out.format("Akan dibuat Matriks Augmented dengan ukuran BarisxKolom \n");
+        System.out.format("Akan dibuat Matriks Augmented dengan ukuran Baris x Kolom \n");
         
         System.out.println("Pilih metode masukkan data matriks:");
         System.out.println("1. Keyboard");
@@ -43,6 +42,7 @@ public class Menu  {
 
             Matriks.GaussElimination(Matriks.Mat);
             Matriks.TulisGauss(Matriks.Mat);
+            System.out.println();
         }
     }
     
@@ -84,6 +84,7 @@ public class Menu  {
             Matriks.GaussElimination(Matriks.Mat);
             Matriks.GaussJordanElimination(Matriks.Mat);
             Matriks.TulisSPLGaussJordan(Matriks.Mat);
+            System.out.println();
         }
     }
     
@@ -174,6 +175,7 @@ public class Menu  {
                     }
                     Matriks.TulisSPLMatriksBalikanCrammer();
                 }
+                System.out.println();
         } else {
             
 
@@ -253,6 +255,7 @@ public class Menu  {
             Matriks.GaussElimination(Matriks.Mat);
             System.out.format("Dengan Menggunakan metode Operasi Baris Elementer maka didapatkan nilai determinan sebesar %.2f.\n",Matriks.GetDeterminanOBE(Matriks.Mat));            
         }
+        System.out.println();
     }
     
     public void MenuDeterminanKofaktor (){
@@ -291,6 +294,7 @@ public class Menu  {
             Matriks.BacaMatriksFromFile(fileName);
             System.out.format("Dengan Menggunakan metode Ekspansi Kofaktor maka didapatkan nilai determinan sebesar %.2f",Matriks.determinantOfMatrix(Matriks.Mat, Matriks.getidxBaris())); 
         }
+        System.out.println();
     }
     
     public void MenuInversOBE (){
@@ -356,6 +360,7 @@ public class Menu  {
             System.out.println("Hasil Matriks Balikan dengan metode Operasi Baris Elementer: ");
             Matriks.TulisMatriks();
         }
+        System.out.println();
     }
     
     public void MenuInversAdjoint (){
@@ -409,6 +414,7 @@ public class Menu  {
         Matriks.Mat = Matriks.getMatriksCofactor(Matriks.Mat, idxBar);
         System.out.format("Matriks Kofaktornya adalah: \n");
         Matriks.TulisMatriks();
+        System.out.println();
     }
     
     public void MenuAdjoin (){
@@ -435,6 +441,7 @@ public class Menu  {
         Matriks.Mat = Matriks.getAdjoin(Matriks.Mat, idxBar);
         System.out.format("Matriks Adjointnya adalah: \n");
         Matriks.TulisMatriks();
+        System.out.println();
     }
     
     public void MenuInterpolasiPolinom (){
@@ -445,6 +452,7 @@ public class Menu  {
         int N = input.nextInt();
         Matriks.matriks(N, N+1);
         Matriks.Interpolasi();
+        System.out.println();
     }
     
     public void ResetLayar (){
