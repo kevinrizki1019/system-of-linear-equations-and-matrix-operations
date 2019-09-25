@@ -6,7 +6,7 @@ BASIC:
     Buat nama yang meaningful
     Tulis comment seperlunya untuk membantu
 */
-package matriksDasar;
+
 import java.io.*;
 import java.util.Scanner;
 
@@ -33,7 +33,8 @@ public class matriks {
         this.idxBaris = i;
         this.idxKolom = j;
     }
-
+    
+    
     /* SELEKTOR untuk Object matriks yang terdefinisi */
     public double getElement(int i, int j) {
         /* Mengirimkan element(i,j) pada property Mat[][] */
