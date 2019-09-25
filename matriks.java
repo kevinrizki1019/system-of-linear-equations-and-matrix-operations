@@ -405,47 +405,44 @@ public class matriks {
     }
 
     public void Interpolasi() {
-        int N = input.nextInt();
-        double x, y;
-
-        matriks temp = new matriks(N, N + 1);
+        double x,y;
         for (int i = 0; i < N; i++) {
             x = input.nextDouble();
             y = input.nextDouble();
             for (int j = 0; j < N + 1; j++) {
                 if (j != N) {
-                    temp.Mat[i][j] = Math.pow(x, j);
+                    this.Mat[i][j] = Math.pow(x, j);
                 } else {
-                    temp.Mat[i][j] = y;
+                    this.Mat[i][j] = y;
                 }
                 System.out.println(j);
             }
             System.out.println(i);
         }
-        double[] D = new double[temp.getidxKolom()];
-        double[] solution = new double[temp.getidxKolom()];
+        double[] D = new double[this.getidxKolom()];
+        double[] solution = new double[this.getidxKolom()];
         double D_awal;
-        D_awal = determinantOfMatrix(temp.Mat, temp.getidxKolom());
+        D_awal = determinantOfMatrix(this.Mat, this.getidxKolom());
         if (D_awal != 0) {
-            for (int j = 0; j < temp.getidxKolom(); j++) {
-                for (int i = 0; i < temp.getidxBaris(); i++) {
-                    temp.Mat[i][j] = this.getElement(i, temp.getidxKolom());
+            for (int j = 0; j < this.getidxKolom(); j++) {
+                for (int i = 0; i < this.getidxBaris(); i++) {
+                    this.Mat[i][j] = this.getElement(i, this.getidxKolom());
                 }
 
-                D[j] = determinantOfMatrix(temp.Mat, temp.getidxKolom());
+                D[j] = determinantOfMatrix(this.Mat, this.getidxKolom());
                 solution[j] = D[j] / D_awal;
 
                 // manual
-                for (int k = 0; k < temp.getidxBaris(); k++) {
-                    for (int l = 0; l < temp.getidxBaris(); l++) {
-                        temp.Mat[k][l] = this.getElement(k, l);
+                for (int k = 0; k < this.getidxBaris(); k++) {
+                    for (int l = 0; l < this.getidxBaris(); l++) {
+                        this.Mat[k][l] = this.getElement(k, l);
                     }
                 }
             }
 
         }
-        for (int k = 0; k < temp.getidxKolom(); k++) {
-            if (k != temp.getidxKolom()) {
+        for (int k = 0; k < this.getidxKolom(); k++) {
+            if (k != this.getidxKolom()) {
                 System.out.print("x" + k + " = " + solution[k] + ", ");
             } else {
                 System.out.println("dan x" + k + " = " + solution[k]);
@@ -868,6 +865,31 @@ public class matriks {
         matriks_withoutAugmented.Mat = this.getWithoutAugmented();
         
         matriks_onlyAugmented.Mat = OnlyAugmented(this.Mat);
+        
+        matriks_withoutAugmented.invers(matriks_invers.Mat);
+
+        matriks matriks_hasil = new matriks(idxBarisInvers,1);
+        matriks_hasil.Mat = matriks_withoutAugmented.KaliMatriks(matriks_invers.Mat, matriks_onlyAugmented.Mat,idxBarisInvers,1);
+        for (int i=0; i<idxBarisInvers; i++){
+             if(i!=idxBarisInvers-1){
+                 System.out.format("x%d=%.2f,",i+1,matriks_hasil.Mat[i][0]);
+             }
+             else{
+                 System.out.format("dan x%d=%.2f.",i+1,matriks_hasil.Mat[i][0]);
+                 System.out.println("");
+             }
+         }
+     }
+     public void TulisSPLMatriksBalikanCrammer()
+     {
+        int idxBarisInvers = this.idxBaris;
+        int idxKolomInvers = this.idxKolom - 1;
+        matriks matriks_invers = new matriks (idxBarisInvers, idxKolomInvers);
+        matriks matriks_onlyAugmented = new matriks (idxBarisInvers , 1);
+        matriks matriks_withoutAugmented = new matriks (idxBarisInvers , idxKolomInvers);
+        matriks_withoutAugmented.Mat = this.getWithoutAugmented();
+        
+        matriks_onlyAugmented.Mat = OnlyAugmented(this.Mat);
         matriks_withoutAugmented.getMatriksInvers();
         matriks_invers = matriks_withoutAugmented;
 
@@ -893,7 +915,7 @@ public class matriks {
          return matriks1;
      }
 
-     public void getSPLCrammer()
+     public void TulisSPLCrammer()
      {
          matriks temp = new matriks (this.getidxBaris(), this.getidxKolom() - 1);
          if (temp.getidxBaris() == temp.getidxKolom())

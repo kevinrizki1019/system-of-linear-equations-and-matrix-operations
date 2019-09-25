@@ -166,6 +166,17 @@ public class menu  {
                 else if(opsi==2){
                     
                 }
+                Matriks.TulisSPLMatriksBalikan();
+            }
+            else if(opsi==2){
+                double [][] matriks,augmented;
+                matriks=new double [idxBar][idxKol];
+                for (int i=0; i<idxBar; i++){
+                    for (int j=0; j<idxKol; j++){
+                        matriks[i][j]=Matriks.getElement(i,j);
+                    }
+                }
+                Matriks.TulisSPLMatriksBalikanCrammer();
             }
         } else {
             
@@ -173,7 +184,21 @@ public class menu  {
     }
     
     public void MenuSPLKaidahCramer (){
-        
+        int idxBar,idxKol;
+        ResetLayar();
+        System.out.format("Metode Kaidah Crammer\n");
+        System.out.format("Akan dibuat Matriks Augmented dengan ukuran BarisxKolom \n");
+        System.out.format("Masukkan Banyaknya Baris: ");
+        idxBar=input.nextInt();
+        System.out.println();
+        System.out.format("Masukkan Banyaknya Kolom: ");
+        idxKol=input.nextInt();
+        System.out.println();
+       matriks Matriks = new matriks(idxBar, idxKol);
+        System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
+        Matriks.BacaMatriks();
+        System.out.println();
+        Matriks.TulisSPLCrammer();
     }
     
     public void MenuDeterminanOBE (){
@@ -391,7 +416,13 @@ public class menu  {
     }
     
     public void MenuInterpolasiPolinom (){
-        
+        ResetLayar();
+        System.out.format("Interpolasi Polinom\n");
+        System.out.format("Akan dibuat persamaan polinom yang melewati titik-titik uji \n");
+        System.out.format("Masukkan Banyaknya titik uji: ");
+        int N = input.nextInt();
+        matriks temp = new matriks(N, N + 1);
+        temp.Interpolasi();
     }
     
     public void ResetLayar (){
