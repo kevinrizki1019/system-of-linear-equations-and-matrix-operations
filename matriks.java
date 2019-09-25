@@ -634,6 +634,20 @@ public class matriks {
     public void TulisGauss(double[][] matriks)
     // I.S Matriks sudah mengalami eliminasi Gauss
     {
+        double pembagi;
+        boolean bool=true;
+        for(int i=this.idxBaris-1; i>=0 ;i--){
+            bool=true;
+            for (int j=0; j<this.idxKolom-1 && bool==true; j++){
+                if (this.Mat[i][j]!=0){
+                     bool=false;
+                     pembagi=this.Mat[i][j];
+                     for (int k=0; k<idxKolom; k++){
+                          this.Mat[i][k]/=pembagi;
+                     }
+                }
+            }
+        }
         StringBuffer variabel = new StringBuffer();
         char a;
         String temp = "";
