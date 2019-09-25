@@ -2,7 +2,7 @@ import java.util.Scanner;
 public class MainMatriks {
     Scanner input = new Scanner(System.in);
     int opsi;
-    menu jalankan = new menu();
+    Menu jalankan = new Menu();
 
     public void MenuUtama() {
         System.out.println("MENU");
@@ -34,6 +34,7 @@ public class MainMatriks {
         }
     }
     public void Menu1() {
+        System.out.println();
         System.out.println("SISTEM PERSAMAAN LINIER");
         System.out.println("1. Metode eliminasi Gauss");
         System.out.println("2. Metode eliminasi Gauss-Jordan");
@@ -43,15 +44,19 @@ public class MainMatriks {
         opsi = input.nextInt();
         if (opsi == 1) {
             jalankan.MenuSPLEliminasiGauss();
+            MenuUtama();
         } else if (opsi == 2) {
             jalankan.MenuSPLEliminasiGaussJordan();
+            MenuUtama();
         } else if (opsi == 3) {
             jalankan.MenuSPLMatriksBalikan();
+            MenuUtama();
         } else if (opsi == 4) {
             jalankan.MenuSPLKaidahCramer();
+            MenuUtama();
         } else {
             System.out.println("Input tidak tepat, masukkan hanya angka yang valid");
-            Menu1();
+            MenuUtama();
         }
     }
     public void Menu2() {
@@ -62,8 +67,10 @@ public class MainMatriks {
         opsi = input.nextInt();
         if (opsi == 1) {
             jalankan.MenuDeterminanOBE();
+            MenuUtama();
         } else if (opsi == 2) {
             jalankan.MenuDeterminanKofaktor();
+            MenuUtama();
         }
     }
     public void Menu3() {
@@ -74,18 +81,23 @@ public class MainMatriks {
         opsi = input.nextInt();
         if (opsi == 1) {
             jalankan.MenuInversOBE();
+            MenuUtama();
         } else if (opsi == 2) {
             jalankan.MenuInversAdjoint();
+            MenuUtama();
         }
     }
     public void Menu4() {
         jalankan.MenuMatriksKofaktor();
+        MenuUtama();
     }
     public void Menu5() {
         jalankan.MenuAdjoin();
+        MenuUtama();
     }
     public void Menu6() {
         jalankan.MenuInterpolasiPolinom();
+        MenuUtama();
     }
     public void Menu7() {
         System.out.println("Anda yakin ingin keluar?");
