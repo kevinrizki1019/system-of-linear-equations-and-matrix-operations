@@ -375,7 +375,9 @@ public class matriks {
                 } else {
                     temp.Mat[i][j] = y;
                 }
+                System.out.println(j);
             }
+            System.out.println(i);
         }
         double [] D = new double [temp.getidxKolom()];
         double [] solution = new double [temp.getidxKolom()];

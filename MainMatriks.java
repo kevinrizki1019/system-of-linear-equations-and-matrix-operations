@@ -25,7 +25,7 @@ public class MainMatriks {
         // System.out.println(d);
             double [][] a = new double[n][n];
 
-        M.TulisSPLMatriksBalikan();
+        M.Interpolasi();
         
     } 
 }
