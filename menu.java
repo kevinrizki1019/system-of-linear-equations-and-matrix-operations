@@ -58,6 +58,7 @@ public class menu  {
             Matriks.TulisGauss(Matriks.Mat);
             System.out.println();
         }
+        
     }
     
     public void MenuSPLEliminasiGaussJordan(){
@@ -169,7 +170,7 @@ public class menu  {
                     }
                     augmented=Matriks.OnlyAugmented(matriks);
                     Matriks.invers();
-                    Matriks.TulisSPLMatriksBalikan();
+                    Matriks.TulisSPLMatriksBalikan(Matriks.Mat,augmented,idxBar,1);
                 }
                 else if(opsi==2){ // Adjoint
                     double [][] matriks,augmented;
@@ -192,7 +193,7 @@ public class menu  {
         }
     }    
     
-    // GAK BISA BUAT TEST CASE
+    // GAK BISA BUAT BEBERAPA TEST CASE
     public void MenuSPLKaidahCramer (){
         int idxBar,idxKol;
         ResetLayar();
@@ -338,7 +339,7 @@ public class menu  {
     }
     
     /* INVERS */
-        public void MenuInversOBE (){
+    public void MenuInversOBE (){
         int idxBar,idxKol,opsi;
         double [][] matriks;
         boolean check=true;
@@ -406,6 +407,15 @@ public class menu  {
                     Matriks.invers();
                     System.out.println("Hasil Matriks Balikan dengan metode Operasi Baris Elementer: ");
                     Matriks.TulisMatriks();
+
+                    System.out.println("Tulis hasil ke file? (1=ya, 0=tidak)");
+                    opsi = input.nextInt();
+                    if (opsi == 1) {
+                        Scanner stringInput = new Scanner(System.in);
+                        System.out.printf("Tulis nama file: ");
+                        String fileName = stringInput.nextLine();
+                        Matriks.TulisMatriksToFile(fileName);
+                    }
                 }
             }
             System.out.println();
@@ -417,7 +427,16 @@ public class menu  {
             // Proses
             Matriks.invers();
             System.out.println("Hasil Matriks Balikan dengan metode Operasi Baris Elementer: ");
-            Matriks.TulisMatriks();            
+            Matriks.TulisMatriks();
+            
+            System.out.println("Tulis hasil ke file? (1=ya, 0=tidak)");
+            opsi = input.nextInt();
+            if (opsi == 1) {
+                Scanner stringInput = new Scanner(System.in);
+                System.out.printf("Tulis nama file: ");
+                String fileName = stringInput.nextLine();
+                Matriks.TulisMatriksToFile(fileName);
+            }
         }
     }
     
@@ -444,6 +463,16 @@ public class menu  {
             System.out.format("Matriks Inversenya adalah: \n");
             Matriks.TulisMatriks();
             System.out.println();
+
+            System.out.println("Tulis hasil ke file? (1=ya, 0=tidak)");
+            opsi = input.nextInt();
+            if (opsi == 1) {
+                Scanner stringInput = new Scanner(System.in);
+                System.out.printf("Tulis nama file: ");
+                String fileName = stringInput.nextLine();
+                Matriks.TulisMatriksToFile(fileName);
+            }
+
         } else {
             // Membaca matriks dari file
             matriks Matriks = new matriks();
@@ -455,6 +484,16 @@ public class menu  {
             System.out.format("Matriks Inversenya adalah: \n");
             Matriks.TulisMatriks();
             System.out.println();
+
+            System.out.println("Tulis hasil ke file? (1=ya, 0=tidak)");
+            opsi = input.nextInt();
+            if (opsi == 1) {
+                Scanner stringInput = new Scanner(System.in);
+                System.out.printf("Tulis nama file: ");
+                String fileName = stringInput.nextLine();
+                Matriks.TulisMatriksToFile(fileName);
+            }
+
         }
     }
     
@@ -482,6 +521,16 @@ public class menu  {
             System.out.format("Matriks Kofaktornya adalah: \n");
             Matriks.TulisMatriks();
             System.out.println();
+
+            System.out.println("Tulis hasil ke file? (1=ya, 0=tidak)");
+            opsi = input.nextInt();
+            if (opsi == 1) {
+                Scanner stringInput = new Scanner(System.in);
+                System.out.printf("Tulis nama file: ");
+                String fileName = stringInput.nextLine();
+                Matriks.TulisMatriksToFile(fileName);
+            }
+
         } else {
             // Membaca matriks dari file
             matriks Matriks = new matriks();
@@ -493,6 +542,16 @@ public class menu  {
             System.out.format("Matriks Kofaktornya adalah: \n");
             Matriks.TulisMatriks();
             System.out.println();
+
+            System.out.println("Tulis hasil ke file? (1=ya, 0=tidak)");
+            opsi = input.nextInt();
+            if (opsi == 1) {
+                Scanner stringInput = new Scanner(System.in);
+                System.out.printf("Tulis nama file: ");
+                String fileName = stringInput.nextLine();
+                Matriks.TulisMatriksToFile(fileName);
+            }
+
         }
     }
     
@@ -520,6 +579,16 @@ public class menu  {
             System.out.format("Matriks Adjointnya adalah: \n");
             Matriks.TulisMatriks();
             System.out.println();
+
+            System.out.println("Tulis hasil ke file? (1=ya, 0=tidak)");
+            opsi = input.nextInt();
+            if (opsi == 1) {
+                Scanner stringInput = new Scanner(System.in);
+                System.out.printf("Tulis nama file: ");
+                String fileName = stringInput.nextLine();
+                Matriks.TulisMatriksToFile(fileName);
+            }
+
         } else {
             // Membaca matriks dari file
             matriks Matriks = new matriks();
@@ -531,6 +600,16 @@ public class menu  {
             System.out.format("Matriks Adjointnya adalah: \n");
             Matriks.TulisMatriks();
             System.out.println();
+
+            System.out.println("Tulis hasil ke file? (1=ya, 0=tidak)");
+            opsi = input.nextInt();
+            if (opsi == 1) {
+                Scanner stringInput = new Scanner(System.in);
+                System.out.printf("Tulis nama file: ");
+                String fileName = stringInput.nextLine();
+                Matriks.TulisMatriksToFile(fileName);
+            }
+
         }
     }
     
