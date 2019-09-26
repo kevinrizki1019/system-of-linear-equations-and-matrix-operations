@@ -38,10 +38,8 @@ public class menu  {
         if (opsi == 1) {
             System.out.format("Masukkan Banyaknya Baris: ");
             idxBar=input.nextInt();
-            System.out.println();
             System.out.format("Masukkan Banyaknya Kolom: ");
             idxKol=input.nextInt();
-            System.out.println();
             Matriks.setidx(idxBar, idxKol);
             System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
             Matriks.BacaMatriks();
@@ -56,7 +54,6 @@ public class menu  {
             // Mengolah data matriks yang terbaca
             Matriks.GaussElimination(Matriks.Mat);
             Matriks.TulisGauss(Matriks.Mat);
-            System.out.println();
         }
         
     }
@@ -74,14 +71,11 @@ public class menu  {
         if (opsi == 1) {
             System.out.format("Masukkan Banyaknya Baris: ");
             idxBar=input.nextInt();
-            System.out.println();
             System.out.format("Masukkan Banyaknya Kolom: ");
             idxKol=input.nextInt();
-            System.out.println();
             Matriks.setidx(idxBar, idxKol);
             System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
             Matriks.BacaMatriks();
-            System.out.println();
             Matriks.GaussElimination(Matriks.Mat);
             Matriks.GaussJordanElimination(Matriks.Mat);
             Matriks.TulisSPLGaussJordan(Matriks.Mat);
@@ -98,21 +92,23 @@ public class menu  {
             System.out.println();
         }
     }
-    
-    // MASIH SALAH, TOLONG DIBENERIN
-    public void MenuSPLMatriksBalikan (){
+        public void MenuSPLMatriksBalikan (){
         int idxBar,idxKol,opsi;
         boolean check=true;
-        ResetLayar();
+        MainMatriks jalankan= new MainMatriks ();
+        System.out.format("\nMetode Matriks Balikan\n");
+        System.out.format("Akan dibuat Matriks Augmented dengan ukuran BarisxKolom \n");
+        System.out.format("Masukkan Kolom harus berukuran Baris+1\n");
 
-        // Opsi untuk memilih metode baca file    
-        PilihMetodeBaca();
+        System.out.println("Pilih metode masukkan data matriks:");
+        System.out.println("1. Keyboard");
+        System.out.println("2. File Eksternal");
+        System.out.print("Pilihan Menu: ");
         opsi = input.nextInt();
         
         if (opsi == 1) {
             System.out.format("Masukkan Banyaknya Baris: ");
             idxBar=input.nextInt();
-            System.out.println();
             System.out.format("Masukkan Banyaknya Kolom: ");
             idxKol=input.nextInt();
             System.out.println();
@@ -124,14 +120,13 @@ public class menu  {
                     while (idxKol!=idxBar+1){
                         System.out.format("Masukkan Banyaknya Baris: ");
                         idxBar=input.nextInt();
-                        System.out.println();
                         System.out.format("Masukkan Banyaknya Kolom: ");
                         idxKol=input.nextInt();
                         if(idxKol!=idxBar+1){
                             System.out.println("Masukkan Tetap Salah, Silahkan input kembali!");
                         }
                         else{
-                           Matriks.setidx(idxBar, idxKol);
+                           Matriks.matriks(idxBar, idxKol);
                         }
                     }
                 }
@@ -143,24 +138,25 @@ public class menu  {
                             System.out.println("Masukkan Tetap Salah, Silahkan input kembali!");
                         }
                         else{
-                           Matriks.setidx(idxBar, idxKol);
+                           Matriks.matriks(idxBar, idxKol);
                         }
                     }
                 }
-                else{
+                else if (opsi==3){
                     check=false;
+                    jalankan.MenuUtama();
                 }
             }
             if(check=true){
+                Matriks.matriks(idxBar, idxKol);
                 System.out.println();
                 System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
                 Matriks.BacaMatriks();
-                ResetLayar();
                 System.out.format("Silahkan pilih Metode invers Balikan\n1. Matriks Balikan OBE.\n2. Matriks Balikan Adjoin.\n ");
                 System.out.format("Opsi yang Dipilih (Masukkan angka opsinya saja) : ");
                 opsi=input.nextInt();
                 System.out.println();
-                if (opsi==1){ // OBE
+                if (opsi==1){
                     double [][] matriks,augmented;
                     matriks=new double [idxBar][idxKol];
                     for (int i=0; i<idxBar; i++){
@@ -168,22 +164,38 @@ public class menu  {
                             matriks[i][j]=Matriks.getElement(i,j);
                         }
                     }
-                    augmented=Matriks.OnlyAugmented(matriks);
+                    augmented=Matriks.OnlyAugmented(Matriks.Mat);
                     Matriks.invers();
+<<<<<<< HEAD
                     Matriks.TulisSPLMatriksBalikan(Matriks.Mat,augmented,idxBar,1);
-                }
-                else if(opsi==2){ // Adjoint
-                    double [][] matriks,augmented;
-                    matriks=new double [idxBar][idxKol];
-                    for (int i=0; i<idxBar; i++){
-                        for (int j=0; j<idxKol; j++){
-                            matriks[i][j]=Matriks.getElement(i,j);
-                        }
+=======
+                    if(Matriks.GetDeterminanOBE(Matriks.Mat)==0){
+                        System.out.println("Determinan matriks sama dengan nol. Matriks tidak bisa diproses!");
                     }
-                    Matriks.TulisSPLMatriksBalikanCrammer();
+                    else{
+                        Matriks.TulisSPLMatriksBalikan(Matriks.Mat,augmented,idxBar,1);
+                    }
+>>>>>>> 541ee6a612de0c4a890343dfc408e0df480475c5
+                }
+                else if(opsi==2){
+                    double [][] matriks,augmented,matriks1;
+                    matriks1=Matriks.Mat;
+                    Matriks.invers();
+                    if(Matriks.GetDeterminanOBE(Matriks.Mat)==0){
+                        System.out.println("Determinan matriks sama dengan nol. Matriks tidak bisa diproses!");
+                    }
+                    else{
+                        Matriks.Mat=matriks1;
+                        matriks=new double [idxBar][idxKol];
+                        for (int i=0; i<idxBar; i++){
+                            for (int j=0; j<idxKol; j++){
+                                matriks[i][j]=Matriks.getElement(i,j);
+                            }
+                        }
+                        Matriks.TulisSPLMatriksBalikanCrammer();
+                    }
                 }
                 System.out.println();
-            } 
         } else {
             // Membaca matriks dari file
             matriks Matriks = new matriks();
@@ -195,6 +207,7 @@ public class menu  {
     
     // GAK BISA BUAT BEBERAPA TEST CASE
     public void MenuSPLKaidahCramer (){
+        double [][] matriks;
         int idxBar,idxKol;
         ResetLayar();
 
@@ -215,8 +228,16 @@ public class menu  {
             Matriks.setidx(idxBar, idxKol);
             System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
             Matriks.BacaMatriks();
-            System.out.println();
-            Matriks.TulisSPLCrammer();
+            matriks=Matriks.Mat;
+            Matriks.invers();
+            if(Matriks.GetDeterminanOBE(Matriks.Mat)==0){
+                System.out.println("Determinan Matriks sama dengan nol. Matriks Tidak bisa diproses!");
+            }
+            else{
+                Matriks.Mat=matriks;
+                System.out.println();
+                Matriks.TulisSPLCrammer();
+            }
         } else {
             // Membaca matriks dari file
             matriks Matriks = new matriks();
@@ -327,6 +348,7 @@ public class menu  {
             System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
             Matriks.BacaMatriks();
             System.out.format("Dengan Menggunakan metode Ekspansi Kofaktor maka didapatkan nilai determinan sebesar %.2f",Matriks.determinantOfMatrix(Matriks.Mat, idxBar));            
+            System.out.println(Matriks.determinantOfMatrix(Matriks.Mat, idxBar));
         } else {
             // Membaca matriks dari file
             matriks Matriks = new matriks();
