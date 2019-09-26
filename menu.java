@@ -6,6 +6,7 @@ public class menu  {
     int opsi;
     Scanner input = new Scanner(System.in);
 
+    /* SPL */
     public void MenuSPLEliminasiGauss(){
         int idxBar,idxKol;
         ResetLayar();
@@ -69,6 +70,7 @@ public class menu  {
             System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
             Matriks.BacaMatriks();
             System.out.println();
+            Matriks.GaussElimination(Matriks.Mat);
             Matriks.GaussJordanElimination(Matriks.Mat);
             Matriks.TulisSPLGaussJordan(Matriks.Mat);
         }  else {
@@ -88,6 +90,7 @@ public class menu  {
         }
     }
     
+    // MASIH SALAH, TOLONG DIBENERIN
     public void MenuSPLMatriksBalikan (){
         int idxBar,idxKol,opsi;
         boolean check=true;
@@ -153,7 +156,7 @@ public class menu  {
                 System.out.format("Opsi yang Dipilih (Masukkan angka opsinya saja) : ");
                 opsi=input.nextInt();
                 System.out.println();
-                if (opsi==1){
+                if (opsi==1){ // OBE
                     double [][] matriks,augmented;
                     matriks=new double [idxBar][idxKol];
                     for (int i=0; i<idxBar; i++){
@@ -165,7 +168,7 @@ public class menu  {
                     Matriks.invers();
                     Matriks.TulisSPLMatriksBalikan();
                 }
-                else if(opsi==2){
+                else if(opsi==2){ // Adjoint
                     double [][] matriks,augmented;
                     matriks=new double [idxBar][idxKol];
                     for (int i=0; i<idxBar; i++){
@@ -182,6 +185,7 @@ public class menu  {
         }
         }
     }    
+    
     public void MenuSPLKaidahCramer (){
         int idxBar,idxKol;
         ResetLayar();
@@ -200,7 +204,9 @@ public class menu  {
         Matriks.TulisSPLCrammer();
     }
     
-   public void MenuDeterminanOBE (){
+    /* DETERMINAN */
+    /* MASIH SALAH UNTUK MATRIKS 5 X 5 di testcase: "TestCase3Matriks5.txt" */
+    public void MenuDeterminanOBE (){
         int idxBar,idxKol,opsi;
         boolean check=true;
         ResetLayar();
@@ -297,6 +303,7 @@ public class menu  {
         System.out.println();
     }
     
+    /* INVERS */
     public void MenuInversOBE (){
         int idxBar,idxKol,opsi;
         boolean check=true;
@@ -390,6 +397,7 @@ public class menu  {
         System.out.println();
     }
     
+    /* KOFAKTOR */
     public void MenuMatriksKofaktor (){
         int idxBar,idxKol;
         ResetLayar();
@@ -417,6 +425,7 @@ public class menu  {
         System.out.println();
     }
     
+    /* ADJOINT */
     public void MenuAdjoin (){
         int idxBar,idxKol;
         ResetLayar();
@@ -444,6 +453,8 @@ public class menu  {
         System.out.println();
     }
     
+    /* INTERPOLASI */
+    /* JUMLAH ANGKA DI BELAKANG KOMA JADIIN 4! KURANG TAKSIRAN UNTUK X TERTENTU */
     public void MenuInterpolasiPolinom (){
         ResetLayar();
         System.out.format("Interpolasi Polinom\n");

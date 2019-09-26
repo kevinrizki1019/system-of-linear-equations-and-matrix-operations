@@ -476,7 +476,7 @@ public class matriks {
         double temp;
         double [][] matriks1;
         matriks1=this.Mat;
-        setidx(idxBaris,2*idxBaris);
+        this.setidx(idxBaris,2*idxBaris);
         for (int i=0;i<idxBaris;i++){
             for (int j=0; j<idxBaris; j++){
                 this.Mat[i][j]=matriks1[i][j];
