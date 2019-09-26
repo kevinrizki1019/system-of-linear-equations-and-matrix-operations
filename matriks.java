@@ -868,8 +868,8 @@ public class matriks {
 
         matriks matriks_hasil = new matriks(idxBarisInvers,1);
         matriks_hasil.Mat = matriks_withoutAugmented.KaliMatriks(matriks_invers.Mat, matriks_onlyAugmented.Mat,idxBarisInvers,1);
-        for (int i=0; i<idxBarisInvers; i++){
-             if(i!=idxBarisInvers-1){
+        for (int i=0; i<idxKolomInvers; i++){
+             if(i!=idxKolomInvers){
                  System.out.format("x%d=%.2f,",i+1,matriks_hasil.Mat[i][0]);
              }
              else{

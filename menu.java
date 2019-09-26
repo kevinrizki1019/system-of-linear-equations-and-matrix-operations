@@ -117,7 +117,7 @@ public class menu  {
                 System.out.format("Silahkan Input Opsi yang dipilih (input nomornya saja): ");
                 opsi=input.nextInt();
                 if (opsi==1){
-                    while (idxKol!=idxBar+1){
+                    do{
                         System.out.format("Masukkan Banyaknya Baris: ");
                         idxBar=input.nextInt();
                         System.out.println();
@@ -129,7 +129,7 @@ public class menu  {
                         else{
                            Matriks.setidx(idxBar, idxKol);
                         }
-                    }
+                    }while (idxKol!=idxBar+1);
                 }
                 else if (opsi==2){
                     while (idxKol!=idxBar+1){
@@ -149,6 +149,7 @@ public class menu  {
             }
             if(check=true){
                 System.out.println();
+                Matriks.setidx(idxBar, idxKol);
                 System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
                 Matriks.BacaMatriks();
                 ResetLayar();
@@ -169,13 +170,7 @@ public class menu  {
                     Matriks.TulisSPLMatriksBalikan();
                 }
                 else if(opsi==2){ // Adjoint
-                    double [][] matriks,augmented;
-                    matriks=new double [idxBar][idxKol];
-                    for (int i=0; i<idxBar; i++){
-                        for (int j=0; j<idxKol; j++){
-                            matriks[i][j]=Matriks.getElement(i,j);
-                        }
-                    }
+
                     Matriks.TulisSPLMatriksBalikanCrammer();
                 }
                 System.out.println();
@@ -290,6 +285,7 @@ public class menu  {
             System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
             Matriks.BacaMatriks();
             System.out.format("Dengan Menggunakan metode Ekspansi Kofaktor maka didapatkan nilai determinan sebesar %.2f",Matriks.determinantOfMatrix(Matriks.Mat, idxBar));            
+            System.out.println(Matriks.determinantOfMatrix(Matriks.Mat, idxBar));
         } else {
             matriks Matriks = new matriks();
             Scanner inputFile = new Scanner(System.in);
@@ -299,6 +295,7 @@ public class menu  {
             fileName = inputFile.nextLine();
             Matriks.BacaMatriksFromFile(fileName);
             System.out.format("Dengan Menggunakan metode Ekspansi Kofaktor maka didapatkan nilai determinan sebesar %.2f",Matriks.determinantOfMatrix(Matriks.Mat, Matriks.getidxBaris())); 
+            System.out.println(Matriks.determinantOfMatrix(Matriks.Mat, Matriks.getidxBaris()));
         }
         System.out.println();
     }
