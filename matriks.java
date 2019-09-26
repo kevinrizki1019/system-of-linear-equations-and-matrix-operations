@@ -14,7 +14,7 @@ public class matriks {
     Scanner input = new Scanner(System.in);
 
     /*** PROPERTIES ***/
-    public double[][] Mat = new double[10][10];
+    public double[][] Mat = new double[100][100];
     private int idxBaris = 0; /* banyaknya ukuran baris yg terdefinisi */
     private int idxKolom = 0; /* banyaknya ukuran kolom yg terdefinisi */
     private double determinan = 1;
@@ -26,14 +26,11 @@ public class matriks {
          * Membentuk object matriks dengan semua nilai properties berisi nilai default
          */
     }
-
-    public matriks(int i, int j) {
-        /* Membentuk object matriks dengan nilai properties sesuai */
+    public matriks(int i, int j){
         this.Mat = new double[i][j];
         this.idxBaris = i;
         this.idxKolom = j;
     }
-    
     
     /* SELEKTOR untuk Object matriks yang terdefinisi */
     public double getElement(int i, int j) {
@@ -405,77 +402,106 @@ public class matriks {
     }
 
     public void Interpolasi() {
-        double x,y;
-        int N;
-        
-        N = input.nextInt();
+
+        matriks MatIn = new matriks (this.getidxBaris(), this.getidxKolom());
+        int N = MatIn.getidxBaris();
         for (int i = 0; i < N; i++) {
-            x = input.nextDouble();
-            y = input.nextDouble();
-            for (int j = 0; j < N+1; j++) {
+            double x = input.nextDouble();
+            double y = input.nextDouble();
+            for (int j = 0; j < N + 1; j++) {
                 if (j != N) {
-                    this.Mat[i][j] = Math.pow(x, j);
+                    MatIn.Mat[i][j] = Math.pow(x, j);
                 } else {
-                    this.Mat[i][j] = y;
+                    MatIn.Mat[i][j] = y;
                 }
-                System.out.println(j);
             }
-            System.out.println(i);
         }
-        double[] D = new double[this.getidxKolom()];
-        double[] solution = new double[this.getidxKolom()];
-        double D_awal;
-        D_awal = determinantOfMatrix(this.Mat, this.getidxKolom());
-        if (D_awal != 0) {
-            for (int j = 0; j < this.getidxKolom(); j++) {
-                for (int i = 0; i < this.getidxBaris(); i++) {
-                    this.Mat[i][j] = this.getElement(i, this.getidxKolom());
-                }
+        matriks temp = new matriks(this.getidxBaris(), this.getidxKolom()-1);
+        if (temp.getidxBaris() == temp.getidxKolom())
+         {
+             for (int i = 0; i < temp.getidxBaris(); i++)
+             {
+                 for (int j = 0; j < temp.getidxKolom(); j++)
+                 {
+                     temp.Mat[i][j] = MatIn.getElement(i, j);
+                 }
+            }
+            double[] D = new double[temp.getidxKolom()];
+            double[] solution = new double[temp.getidxKolom()];
+            double D_awal;
+            D_awal = determinantOfMatrix(temp.Mat, temp.getidxKolom());
+            if (D_awal != 0) {
+                for (int j = 0; j < temp.getidxKolom(); j++) {
+                    for (int i = 0; i < temp.getidxBaris(); i++) {
+                        temp.Mat[i][j] = MatIn.getElement(i, temp.getidxKolom());
+                    }
+                    D[j] = determinantOfMatrix(temp.Mat, temp.getidxKolom());
 
-                D[j] = determinantOfMatrix(this.Mat, this.getidxKolom());
-                solution[j] = D[j] / D_awal;
+                    solution[j] = D[j] / D_awal;
 
-                // manual
-                for (int k = 0; k < this.getidxBaris(); k++) {
-                    for (int l = 0; l < this.getidxBaris(); l++) {
-                        this.Mat[k][l] = this.getElement(k, l);
+                    // manual exchanging. Karena
+                    for (int k = 0; k < temp.getidxBaris(); k++) {
+                        for (int l = 0; l < temp.getidxBaris(); l++) {
+                            temp.Mat[k][l] = MatIn.getElement(k, l);
+                        }
                     }
                 }
-            }
 
-        }
-        for (int k = 0; k < this.getidxKolom(); k++) {
-            if (k != this.getidxKolom()) {
-                System.out.print("x" + k + " = " + solution[k] + ", ");
-            } else {
-                System.out.println("dan x" + k + " = " + solution[k]);
             }
-        }
-    }
-
-    public void invers(double[][] matriks1)
-    // I.S Masukan Matriks belum mengalami OBE (ELIMINASI GAUSS JORDAN)
-    {
-        double[][] matriks = new double[idxBaris][2 * (idxBaris)];
-        for (int i = 0; i < idxBaris; i++) {
-            for (int j = 0; j < idxBaris; j++) {
-                matriks[i][j] = matriks1[i][j];
-            }
-            for (int k = idxBaris; k < 2 * idxBaris; k++) {
-                if (k == idxBaris + i) {
-                    matriks[i][k] = 1;
-                } else {
-                    matriks[i][k] = 0;
+            System.out.print("y = ");
+            for (int k = 0; k < temp.getidxKolom(); k++) {
+                if (k == 0) {
+                    System.out.print(solution[k] + " + ");
+                } 
+                else if ((k == 1) && (k != temp.getidxKolom()-1)) {
+                    System.out.print(solution[k] + "x" + " + ");
+                }
+                else if ((k == 1) && (k == temp.getidxKolom()-1)) {
+                    System.out.println(solution[k] + "x");
+                }
+                else if ((k > 1) && (k != temp.getidxKolom()-1)) {
+                    System.out.print(solution[k] + "x" + k + " + ");
+                }
+                else
+                {
+                    System.out.println(solution[k] + "x" + k);
                 }
             }
         }
-        GaussElimination(matriks);
-        GaussJordanElimination(matriks);
-        for (int i = 0; i < idxBaris; i++) {
-            for (int j = 0; j < idxBaris; j++) {
-                matriks1[i][j] = matriks[i][j + idxBaris];
+
+    }
+
+    public void invers ()
+    //I.S Masukan Matriks belum mengalami OBE (ELIMINASI GAUSS JORDAN)
+    { 
+        double temp;
+        double [][] matriks1;
+        matriks1=this.Mat;
+        matriks(idxBaris,2*idxBaris);
+        setidx(idxBaris,2*idxBaris);
+        for (int i=0;i<idxBaris;i++){
+            for (int j=0; j<idxBaris; j++){
+                this.Mat[i][j]=matriks1[i][j];
+            }
+            for(int k=idxBaris; k<2*idxBaris;k++){
+                if (k==idxBaris+i){
+                    this.Mat[i][k]=1;
+                }
+                else{
+                    this.Mat[i][k]=0;
+                }
             }
         }
+        GaussElimination(this.Mat);
+        GaussJordanElimination(this.Mat);
+        TulisMatriks();
+        for (int i=0;i<idxBaris;i++){
+            for (int j=0;j<idxBaris;j++){
+                temp=this.Mat[i][j+idxBaris];
+                this.Mat[i][j]=temp;
+            }
+        }
+        setidx(idxBaris,idxBaris);
     }
 
     public double[][] KaliMatriks(double[][] matriks1, double[][] matriks2, int idxBrs1, int idxKol2) {
@@ -626,6 +652,20 @@ public class matriks {
     public void TulisGauss(double[][] matriks)
     // I.S Matriks sudah mengalami eliminasi Gauss
     {
+        double pembagi;
+        boolean bool=true;
+        for(int i=this.idxBaris-1; i>=0 ;i--){
+            bool=true;
+            for (int j=0; j<this.idxKolom-1 && bool==true; j++){
+                if (this.Mat[i][j]!=0){
+                     bool=false;
+                     pembagi=this.Mat[i][j];
+                     for (int k=0; k<idxKolom; k++){
+                          this.Mat[i][k]/=pembagi;
+                     }
+                }
+            }
+        }
         StringBuffer variabel = new StringBuffer();
         char a;
         String temp = "";
@@ -869,7 +909,7 @@ public class matriks {
         
         matriks_onlyAugmented.Mat = OnlyAugmented(this.Mat);
         
-        matriks_withoutAugmented.invers(matriks_invers.Mat);
+        matriks_withoutAugmented.invers();
 
         matriks matriks_hasil = new matriks(idxBarisInvers,1);
         matriks_hasil.Mat = matriks_withoutAugmented.KaliMatriks(matriks_invers.Mat, matriks_onlyAugmented.Mat,idxBarisInvers,1);
