@@ -78,6 +78,7 @@ public class matriks {
          * property idxKolom dengan newidxKolom I.S. Object terdefinisi F.S. Property
          * idxBaris dan idxKolom pada Object berganti
          */
+        this.Mat = new double[newidxBaris][newidxKolom];
         this.setidxBaris(newidxBaris);
         this.setidxKolom(newidxKolom);
         this.Mat = new double[newidxBaris][newidxKolom];
@@ -166,7 +167,7 @@ public class matriks {
         }
     }
 
-    public void TulisMatriksToFile() {
+    public void TulisMatriksToFile(String fileName) {
         /* I.S. Object matriks terdefinisi semua */
         /*
          * F.S. Nilai property Mat[i][j] ditulis ke file per baris per kolom,
@@ -176,7 +177,7 @@ public class matriks {
          * Proses: Menulis nilai setiap elemen Mat ke file dengan traversal per baris
          * dan per kolom
          */
-        String fileName = input.nextLine();
+
         try {
             FileWriter fw = new FileWriter(fileName);
             for (int i = 0; i < this.idxBaris; i++) {
