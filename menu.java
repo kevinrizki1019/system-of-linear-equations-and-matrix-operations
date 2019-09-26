@@ -195,7 +195,7 @@ public class menu  {
             // Membaca matriks dari file
             matriks Matriks = new matriks();
             BacaMatriksDariFile(Matriks);
-
+        }
             // Proses            
         }
     }    

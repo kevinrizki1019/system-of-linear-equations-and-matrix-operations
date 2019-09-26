@@ -473,8 +473,23 @@ public class matriks {
                     System.out.println(solution[k] + "x" + k);
                 }
             }
+            double x,y;
+            System.out.println("Masukan titik x yang akan ditaksir nilainya : ");
+            x = input.nextDouble();
+            y = temp.hitungPolinom(solution,x);
+            System.out.println("Nilai taksiran : " + y);
         }
 
+    }
+    double hitungPolinom (double[] solution, double x)
+    {
+        double y = 0;
+
+        for(int i = 0; i < this.getidxBaris(); i++ )
+        {
+            y+= solution[i]*Math.pow(x,i);
+        }
+        return y;
     }
 
     public void invers ()
