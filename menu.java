@@ -262,9 +262,8 @@ public class menu  {
         if (opsi == 1) {
             System.out.format("Masukkan Banyaknya Baris: ");
             idxBar=input.nextInt();
-            System.out.println();
-            System.out.format("Masukkan Banyaknya Kolom: ");
-            idxKol=input.nextInt();
+            idxKol=idxBar;
+            Matriks.matriks(idxBar,idxKol);
             if (idxKol!=idxBar){
                 System.out.format("Matriks Tidak Bisa Diolah! Silahkan Pilih Opsi Selanjutnya\n1. Input Kembali Baris dan Kolom.\n2. Input Kembali Kolom\n3. Keluar.\n");
                 System.out.format("Silahkan Input Opsi yang dipilih (input nomornya saja): ");
@@ -371,11 +370,10 @@ public class menu  {
         opsi = input.nextInt();
 
         if (opsi == 1) {
-            System.out.format("Masukkan Banyaknya Baris: ");
+            System.out.format("Masukkan Banyaknya N: ");
             idxBar=input.nextInt();
-            System.out.println();
-            System.out.format("Masukkan Banyaknya Kolom: ");
-            idxKol=input.nextInt();
+            idxKol=idxBar;
+            Matriks.matriks(idxBar,idxKol);
             if (idxKol!=idxBar){
                 System.out.format("Matriks Tidak Bisa Diolah! Silahkan Pilih Opsi Selanjutnya\n1. Input Kembali Baris dan Kolom.\n2. Input Kembali Kolom\n3. Keluar.\n");
                 System.out.format("Silahkan Input Opsi yang dipilih (input nomornya saja): ");
