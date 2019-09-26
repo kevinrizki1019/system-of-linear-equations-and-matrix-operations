@@ -482,7 +482,8 @@ public class matriks {
         double temp;
         double [][] matriks1;
         matriks1=this.Mat;
-        this.setidx(idxBaris,2*idxBaris);
+        matriks(idxBaris,2*idxBaris);
+        setidx(idxBaris,2*idxBaris);
         for (int i=0;i<idxBaris;i++){
             for (int j=0; j<idxBaris; j++){
                 this.Mat[i][j]=matriks1[i][j];
@@ -498,7 +499,6 @@ public class matriks {
         }
         GaussElimination(this.Mat);
         GaussJordanElimination(this.Mat);
-        TulisMatriks();
         for (int i=0;i<idxBaris;i++){
             for (int j=0;j<idxBaris;j++){
                 temp=this.Mat[i][j+idxBaris];
@@ -514,7 +514,7 @@ public class matriks {
         for (int i = 0; i < idxBrs1; i++) {
             for (int j = 0; j < idxKol2; j++) {
                 matriks[i][j] = 0;
-                for (int k = 0; k < idxBrs1; k++) {
+                for (int k = 0; k < idxKol2; k++) {
                     matriks[i][j] += matriks1[i][k] * matriks2[k][j];
                 }
             }
@@ -828,31 +828,19 @@ public class matriks {
         }
         return matriks_withoutAugmented;
      }
-     public void TulisSPLMatriksBalikan ( )
-     {
-        int idxBarisInvers = this.idxBaris;
-        int idxKolomInvers = this.idxKolom - 1;
-        matriks matriks_invers = new matriks (idxBarisInvers, idxKolomInvers);
-        matriks matriks_onlyAugmented = new matriks (idxBarisInvers , 1);
-        matriks matriks_withoutAugmented = new matriks (idxBarisInvers , idxKolomInvers);
-        matriks_withoutAugmented.Mat = this.getWithoutAugmented();
-        
-        matriks_onlyAugmented.Mat = OnlyAugmented(this.Mat);
-        
-        matriks_withoutAugmented.invers();
-
-        matriks matriks_hasil = new matriks(idxBarisInvers,1);
-        matriks_hasil.Mat = matriks_withoutAugmented.KaliMatriks(matriks_invers.Mat, matriks_onlyAugmented.Mat,idxBarisInvers,1);
+     public void TulisSPLMatriksBalikan (double [][] matriksInvers, double [][] onlyAugmented, int idxBarisInvers, int idxKolomAugmented )
+    {
+        double[][] matriks= new double[idxBarisInvers][idxKolomAugmented-1];
+        matriks=KaliMatriks(matriksInvers,onlyAugmented,idxBarisInvers,idxKolomAugmented);
         for (int i=0; i<idxBarisInvers; i++){
-             if(i!=idxBarisInvers-1){
-                 System.out.format("x%d=%.2f,",i+1,matriks_hasil.Mat[i][0]);
-             }
-             else{
-                 System.out.format("dan x%d=%.2f.",i+1,matriks_hasil.Mat[i][0]);
-                 System.out.println("");
-             }
-         }
-     }
+            if(i!=idxBarisInvers-1){
+                System.out.format("x%d=%.2f,",i+1,matriks[i][idxKolomAugmented-1]);
+            }
+            else{
+                System.out.format("dan x%d=%.2f.",i+1,matriks[i][idxKolomAugmented-1]);
+            }
+        }
+    }
      public void TulisSPLMatriksBalikanCrammer()
      {
         int idxBarisInvers = this.idxBaris;
