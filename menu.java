@@ -304,8 +304,9 @@ public class menu  {
     }
     
     /* INVERS */
-    public void MenuInversOBE (){
+        public void MenuInversOBE (){
         int idxBar,idxKol,opsi;
+        double [][] matriks;
         boolean check=true;
         ResetLayar();
         System.out.format("Metode Invers/Matriks Balikan dengan Operasi Baris Elementer\n");
@@ -338,7 +339,7 @@ public class menu  {
                         System.out.println("Masukkan Tetap Salah, Silahkan input kembali!");
                     }
                     else{
-                       Matriks.setidx(idxBar, idxKol);
+                       Matriks.matriks(idxBar, idxKol);
                     }
                 }
             }
@@ -350,7 +351,7 @@ public class menu  {
                         System.out.println("Masukkan Tetap Salah, Silahkan input kembali!");
                     }
                     else{
-                       Matriks.setidx(idxBar, idxKol);
+                       Matriks.matriks(idxBar, idxKol);
                     }
                 }
             }
@@ -360,12 +361,19 @@ public class menu  {
         }
         if(check=true){
             System.out.println();
-            Matriks.setidx(idxBar, idxKol);
+            Matriks.matriks(idxBar, idxKol);
             System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
             Matriks.BacaMatriks();
-            Matriks.invers();
-            System.out.println("Hasil Matriks Balikan dengan metode Operasi Baris Elementer: ");
-            Matriks.TulisMatriks();
+            matriks=Matriks.Mat;
+            Matriks.GaussElimination(matriks);
+            if(Matriks.GetDeterminanOBE(matriks)==0){
+                System.out.println("Determinan Matriks sama dengan nol. Matriks tidak memiliki matriks Balikan.\n");
+            }
+            else{
+                Matriks.invers();
+                System.out.println("Hasil Matriks Balikan dengan metode Operasi Baris Elementer: ");
+                Matriks.TulisMatriks();
+            }
         }
         System.out.println();
     }
