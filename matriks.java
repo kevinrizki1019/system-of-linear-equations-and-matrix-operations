@@ -31,6 +31,7 @@ public class matriks {
         this.idxKolom = j;
     }
     
+    
     /* SELEKTOR untuk Object matriks yang terdefinisi */
     public double getElement(int i, int j) {
         /* Mengirimkan element(i,j) pada property Mat[][] */
