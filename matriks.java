@@ -80,6 +80,7 @@ public class matriks {
          */
         this.setidxBaris(newidxBaris);
         this.setidxKolom(newidxKolom);
+        this.Mat = new double[newidxBaris][newidxKolom];
     }
 
     /* KELOMPOK BACA/TULIS */

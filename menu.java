@@ -142,7 +142,7 @@ public class menu  {
                             System.out.println("Masukkan Tetap Salah, Silahkan input kembali!");
                         }
                         else{
-                           Matriks.setidx(idxBar, idxKol);
+                           Matriks.matriks(idxBar, idxKol);
                         }
                     }
                 }
@@ -152,7 +152,7 @@ public class menu  {
             }
             if(check=true){
                 System.out.println();
-                Matriks.setidx(idxBar, idxKol);
+                Matriks.matriks(idxBar, idxKol);
                 System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
                 Matriks.BacaMatriks();
                 ResetLayar();
@@ -170,7 +170,7 @@ public class menu  {
                     }
                     augmented=Matriks.OnlyAugmented(matriks);
                     Matriks.invers();
-                    Matriks.TulisSPLMatriksBalikan();
+                    // Matriks.TulisSPLMatriksBalikan();
                 }
                 else if(opsi==2){ // Adjoint
 
