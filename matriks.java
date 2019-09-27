@@ -611,6 +611,7 @@ public class matriks {
         } else {
             StringBuffer variabel = new StringBuffer();
             char a;
+            boolean check=true;
             String temp = "";
             for (int j = 0; j < idxKolom - 1; j++) {
                 temp += "a";
@@ -642,6 +643,7 @@ public class matriks {
                                 }
                                 for (int l = j + 1; l < idxKolom - 1; l++) {
                                     if (matriks[i][l] != 0) {
+                                        check=false;
                                         if (l != idxKolom - 2) {
                                             System.out.format("%.2f%c+", matriks[i][l] * -1, variabel.charAt(l));
                                         } else {
@@ -656,6 +658,15 @@ public class matriks {
                                         System.out.format("%.2f,", matriks[i][idxKolom - 1]);
                                     } else {
                                         System.out.format("%.2f.", matriks[i][idxKolom - 1]);
+                                    }
+                                }
+                                else{
+                                    if (check){
+                                        if (k != idxKolom - 2) {
+                                            System.out.format("%.2f,", matriks[i][idxKolom - 1]);
+                                        } else {
+                                            System.out.format("%.2f.", matriks[i][idxKolom - 1]);
+                                        }
                                     }
                                 }
                                 j = idxKolom;
@@ -689,6 +700,7 @@ public class matriks {
         }
         StringBuffer variabel = new StringBuffer();
         char a;
+        boolean check=true;
         String temp = "";
         for (int j = 0; j < idxKolom - 1; j++) {
             temp += "a";
@@ -718,6 +730,7 @@ public class matriks {
                             }
                             for (int l = j + 1; l < idxKolom - 1; l++) {
                                 if (matriks[i][l] != 0) {
+                                    check=false;
                                     if (l != idxKolom - 2) {
                                         System.out.format("%.2f%c+", matriks[i][l] * -1, variabel.charAt(l));
                                     } else {
@@ -740,6 +753,15 @@ public class matriks {
                                     System.out.format("%.2f.", matriks[i][idxKolom - 1]);
                                 }
                             }
+                            else{
+                                if (check){
+                                    if (k != idxKolom - 2) {
+                                        System.out.format("%.2f,", matriks[i][idxKolom - 1]);
+                                    } else {
+                                        System.out.format("%.2f.", matriks[i][idxKolom - 1]);
+                                    }
+                                }
+                            }
                             j = idxKolom;
                             i = idxBaris;
                             b++;
@@ -751,6 +773,7 @@ public class matriks {
         }
         System.out.format("\n setelah dieliminasi maka didapatkan hasil: \n");
         GaussJordanElimination(matriks);
+        check=true;
         if (!IsHaveSolution(matriks)) {
             System.out.println("Matriks Tidak Memiliki Solusi");
         } else if (!IsHaveManySolution(matriks)) {
@@ -781,7 +804,8 @@ public class matriks {
                                          System.out.format("dan x%d=",k+1);
                                      }
                                      for (int l=j+1; l<idxKolom-1; l++){
-                                         if(matriks[i][l]!=0){    
+                                         if(matriks[i][l]!=0){ 
+                                             check=false;
                                              if (l!=idxKolom-2){
                                                  System.out.format("%.2f%c+",matriks[i][l]*-1,variabel.charAt(l));
                                              }
@@ -808,6 +832,15 @@ public class matriks {
                                              System.out.format("%.2f.",matriks[i][idxKolom-1]);
                                          }
                                      }
+                                     else{
+                                        if (check){
+                                            if (k != idxKolom - 2) {
+                                                System.out.format("%.2f,", matriks[i][idxKolom - 1]);
+                                            } else {
+                                                System.out.format("%.2f.", matriks[i][idxKolom - 1]);
+                                            }
+                                        }
+                                    }
                                      j=idxKolom;  
                                      i=idxBaris;
                                      b++;
