@@ -165,18 +165,19 @@ public class menu  {
                         }
                     }
                     augmented=Matriks.OnlyAugmented(Matriks.Mat);
-                    Matriks.invers();
+                    
+                    Matriks.GaussElimination(Matriks.Mat);
                     if(Matriks.GetDeterminanOBE(Matriks.Mat)==0){
                         System.out.println("Determinan matriks sama dengan nol. Matriks tidak bisa diproses!");
                     }
                     else{
-                        Matriks.TulisSPLMatriksBalikan(Matriks.Mat,augmented,idxBar,1);
+                        Matriks.TulisSPLMatriksBalikan(matriks,augmented,idxBar,1);
                     }
                 }
                 else if(opsi==2){
                     double [][] matriks,augmented,matriks1;
                     matriks1=Matriks.Mat;
-                    Matriks.invers();
+                    Matriks.GaussElimination(Matriks.Mat);
                     if(Matriks.GetDeterminanOBE(Matriks.Mat)==0){
                         System.out.println("Determinan matriks sama dengan nol. Matriks tidak bisa diproses!");
                     }
@@ -225,7 +226,7 @@ public class menu  {
             System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
             Matriks.BacaMatriks();
             matriks=Matriks.Mat;
-            Matriks.invers();
+            Matriks.GaussElimination(Matriks.Mat);
             if(Matriks.GetDeterminanOBE(Matriks.Mat)==0){
                 System.out.println("Determinan Matriks sama dengan nol. Matriks Tidak bisa diproses!");
             }
