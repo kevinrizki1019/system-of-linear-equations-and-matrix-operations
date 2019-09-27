@@ -332,13 +332,9 @@ public class menu  {
         opsi = input.nextInt();
 
         if (opsi == 1) {
-            System.out.format("Masukkan Banyaknya Baris: ");
+            System.out.format("Masukkan Banyaknya N: ");
             idxBar=input.nextInt();
-            System.out.println();
-            System.out.format("Masukkan Banyaknya Kolom: ");
-            idxKol=input.nextInt();
-
-            System.out.println();
+            idxKol=idxBar;
             Matriks.setidx(idxBar, idxKol);
             System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
             Matriks.BacaMatriks();
