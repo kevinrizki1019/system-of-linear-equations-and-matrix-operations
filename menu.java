@@ -167,7 +167,7 @@ public class menu  {
                     augmented=Matriks.OnlyAugmented(Matriks.Mat);
                     
                     Matriks.GaussElimination(Matriks.Mat);
-                    if(Matriks.GetDeterminanOBE(Matriks.Mat)==0){
+                    if(Matriks.determinantOfMatrix(matriks,idxBar)==0){
                         System.out.println("Determinan matriks sama dengan nol. Matriks tidak bisa diproses!");
                     }
                     else{
@@ -178,7 +178,7 @@ public class menu  {
                     double [][] matriks,augmented,matriks1;
                     matriks1=Matriks.Mat;
                     Matriks.GaussElimination(Matriks.Mat);
-                    if(Matriks.GetDeterminanOBE(Matriks.Mat)==0){
+                    if(Matriks.determinantOfMatrix(Matriks.Mat,idxBar)==0){
                         System.out.println("Determinan matriks sama dengan nol. Matriks tidak bisa diproses!");
                     }
                     else{
@@ -227,7 +227,7 @@ public class menu  {
             Matriks.BacaMatriks();
             matriks=Matriks.Mat;
             Matriks.GaussElimination(Matriks.Mat);
-            if(Matriks.GetDeterminanOBE(Matriks.Mat)==0){
+            if(Matriks.determinantOfMatrix(matriks,idxBar)==0){
                 System.out.println("Determinan Matriks sama dengan nol. Matriks Tidak bisa diproses!");
             }
             else{
@@ -413,7 +413,7 @@ public class menu  {
                 Matriks.BacaMatriks();
                 matriks=Matriks.Mat;
                 Matriks.GaussElimination(matriks);
-                if(Matriks.GetDeterminanOBE(matriks)==0){
+                if(Matriks.determinantOfMatrix(Matriks.Mat,idxBar)==0){
                     System.out.println("Determinan Matriks sama dengan nol. Matriks tidak memiliki matriks Balikan.\n");
                 }
                 else{
@@ -472,10 +472,11 @@ public class menu  {
             System.out.format("Masukkan Nilai Setiap Elemen pada Matriks: \n");
             Matriks.BacaMatriks();
             System.out.println();
-            Matriks.getMatriksInvers();
-            System.out.format("Matriks Inversenya adalah: \n");
-            Matriks.TulisMatriks();
-            System.out.println();
+            if(Matriks.determinantOfMatrix(Matriks.Mat,idxBar)==0){
+                Matriks.getMatriksInvers();
+                System.out.format("Matriks Inversenya adalah: \n");
+                Matriks.TulisMatriks();
+                System.out.println();
 
             System.out.println("Tulis hasil ke file? (1=ya, 0=tidak)");
             opsi = input.nextInt();
@@ -486,7 +487,8 @@ public class menu  {
                 Matriks.TulisMatriksToFile(fileName);
             }
 
-        } else {
+        }
+        }else {
             // Membaca matriks dari file
             matriks Matriks = new matriks();
             BacaMatriksDariFile(Matriks);
@@ -507,6 +509,7 @@ public class menu  {
                 Matriks.TulisMatriksToFile(fileName);
             }
 
+        
         }
     }
     
